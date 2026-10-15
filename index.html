@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10120f">
+<title>FF Like Hub — Free Fire Like Tool</title>
+<style>
+:root{--bg:#0d0f0d;--panel:#171a16;--panel2:#20251e;--lime:#c8ff45;--text:#f5f7f1;--muted:#a3ad9b;--line:#30372b;--red:#ff7878}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#29351a 0,transparent 48%),var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+.wrap{width:min(1040px,92%);margin:auto}.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid #ffffff12}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.3px}.logo{display:grid;place-items:center;width:38px;height:38px;background:var(--lime);color:#111;border-radius:12px;font-weight:1000}.badge{font-size:12px;color:var(--lime);border:1px solid #c8ff4544;border-radius:99px;padding:6px 10px}
+.hero{text-align:center;padding:55px 0 30px}.eyebrow{color:var(--lime);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(34px,6vw,58px);line-height:1.05;letter-spacing:-1.7px;margin:15px 0}.hero h1 span{color:var(--lime)}.hero p{color:var(--muted);max-width:600px;margin:0 auto}
+.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;padding-bottom:38px}.card{background:linear-gradient(145deg,#1b1f19,#141713);border:1px solid var(--line);border-radius:22px;padding:25px;box-shadow:0 20px 60px #0003}.card h2{font-size:20px;margin:0 0 5px}.sub{color:var(--muted);font-size:13px;margin:0 0 23px}.field{margin:18px 0}.field label{display:block;font-weight:700;font-size:13px;margin-bottom:8px;color:#dfe5d8}.field input,.field select{width:100%;background:#0e110d;border:1px solid #394032;border-radius:12px;padding:14px;color:var(--text);font:inherit;outline:none}.field input:focus,.field select:focus{border-color:var(--lime);box-shadow:0 0 0 3px #c8ff451c}.hint{color:var(--muted);font-size:12px;margin-top:6px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.check{display:flex;align-items:flex-start;gap:10px;color:var(--muted);font-size:12px;margin:18px 0}.check input{margin-top:4px;accent-color:var(--lime)}button{width:100%;border:0;border-radius:13px;padding:15px 18px;background:var(--lime);color:#11150c;font-size:15px;font-weight:900;cursor:pointer;transition:.2s}button:hover{filter:brightness(1.05);transform:translateY(-1px)}button:disabled{opacity:.55;cursor:wait;transform:none}.status{display:none;margin-top:17px;padding:14px;border-radius:12px;background:#0d100c;border:1px solid var(--line);font-size:13px;overflow-wrap:anywhere}.status.show{display:block}.status.error{border-color:#793e3e;color:#ffd2d2}.status.good{border-color:#526b2d;color:#e6ffc1}.sidebox{background:#10130f;border:1px solid var(--line);border-radius:15px;padding:16px;margin-top:14px}.sidebox strong{display:block;font-size:14px;margin-bottom:5px}.sidebox p{font-size:12px;color:var(--muted);margin:0}.statusrow{display:flex;justify-content:space-between;align-items:center;margin:15px 0;color:var(--muted);font-size:13px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#88917f;margin-right:7px}.foot{border-top:1px solid #ffffff12;padding:22px 0 30px;color:var(--muted);font-size:12px;display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}.foot a{color:var(--lime)}@media(max-width:760px){.layout{grid-template-columns:1fr}.hero{padding-top:40px}.card{padding:20px}.nav{padding:16px 0}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="nav"><div class="brand"><div class="logo">FF</div><span>LIKE HUB</span></div><div class="badge">COMMUNITY TOOL</div></header>
+<section class="hero"><div class="eyebrow">Free Fire • Player utility</div><h1>Give your profile<br><span>a little boost.</span></h1><p>Enter your player UID, choose the account region, and send a like request through the connected API.</p></section>
+<main class="layout">
+<section class="card">
+<h2>Send Likes</h2><p class="sub">Check your UID and region before submitting.</p>
+<form id="likeForm">
+<div class="field"><label for="uid">Free Fire Player UID</label><input id="uid" name="uid" inputmode="numeric" autocomplete="off" placeholder="e.g. 1234567890" required maxlength="20" pattern="[0-9]{5,20}"><div class="hint">Digits only — do not enter your password or login details.</div></div>
+<div class="row">
+<div class="field"><label for="region">Account region</label><select id="region" name="region"><option value="pk" selected>Pakistan (PK)</option><option value="sg">Singapore (SG)</option><option value="ind">India (IND)</option><option value="bd">Bangladesh (BD)</option><option value="me">Middle East (ME)</option><option value="id">Indonesia (ID)</option><option value="br">Brazil (BR)</option><option value="th">Thailand (TH)</option><option value="vn">Vietnam (VN)</option><option value="ru">Russia (RU)</option><option value="us">United States (US)</option><option value="my">Malaysia (MY)</option><option value="ph">Philippines (PH)</option><option value="eg">Egypt (EG)</option><option value="sa">Saudi Arabia (SA)</option></select></div>
+<div class="field"><label for="count">Request amount</label><select id="count" name="count"><option value="1">1 request</option><option value="5">5 requests</option><option value="10">10 requests</option><option value="20">20 requests</option><option value="40">40 requests (max)</option></select></div>
+</div>
+<label class="check"><input type="checkbox" id="confirm" required><span>I confirm this is the correct UID and understand the request may fail if the API or game service is unavailable.</span></label>
+<button id="submitBtn" type="submit">Send Like Request ↗</button>
+<div id="status" class="status" role="status" aria-live="polite"></div>
+</form>
+</section>
+<aside class="card">
+<h2>API status</h2><p class="sub">Live check against this website's backend.</p>
+<div class="statusrow"><span><i class="dot" id="healthDot"></i><span id="healthText">Checking connection…</span></span><span id="healthTime">—</span></div>
+<div class="sidebox"><strong>🔒 No account password</strong><p>This page only asks for a public player UID. Never share your Free Fire, Facebook, Google, or game login password.</p></div>
+<div class="sidebox"><strong>⚡ API-powered</strong><p>Requests are sent to the serverless API in this project. The API response decides whether the request succeeded.</p></div>
+<div class="sidebox"><strong>ℹ️ Please note</strong><p>This is an independent community tool, not an official Garena service. Results and availability are not guaranteed.</p></div>
+</aside>
+</main>
+<footer class="foot"><span>© <span id="year"></span> FF Like Hub</span><span>Independent fan-made project · Not affiliated with Garena</span><a href="/api/health" target="_blank" rel="noopener">API health</a></footer>
+</div>
+<script>
+const form=document.getElementById('likeForm'),btn=document.getElementById('submitBtn'),statusBox=document.getElementById('status');
+document.getElementById('year').textContent=new Date().getFullYear();
+function showStatus(message,type){statusBox.className='status show '+type;statusBox.textContent=message}
+async function checkHealth(){const dot=document.getElementById('healthDot'),txt=document.getElementById('healthText'),time=document.getElementById('healthTime');try{const r=await fetch('/api/health');const d=await r.json();if(r.ok&&d.success){dot.style.background='#c8ff45';txt.textContent='Backend reachable';time.textContent='Online';}else throw new Error('Unavailable')}catch(e){dot.style.background='#ff7878';txt.textContent='Backend not reachable';time.textContent='Offline';}}
+checkHealth();
+form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;btn.disabled=true;btn.textContent='Sending request…';statusBox.className='status';try{const payload={uid:document.getElementById('uid').value.trim(),region:document.getElementById('region').value,count:Number(document.getElementById('count').value)};const response=await fetch('/api/like',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});let data;try{data=await response.json()}catch{throw new Error('The API returned an unreadable response.')}if(!response.ok||data.success===false){showStatus('Request unsuccessful: '+(data.error||data.message||('HTTP '+response.status)),'error')}else{showStatus('API response received. '+(data.message||'Request processed.')+' Successful: '+(data.success_count??'—')+' · Failed: '+(data.failed_count??'—'),'good')}}catch(err){showStatus('Could not connect to the API. Check deployment and try again. Details: '+err.message,'error')}finally{btn.disabled=false;btn.textContent='Send Like Request ↗';checkHealth()}});
+</script>
+</body>
+</html>

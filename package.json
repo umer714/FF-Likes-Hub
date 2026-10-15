@@ -1,0 +1,16 @@
+{
+  "name": "ff-api-like",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "ffapis": "3.0.0",
+    "js-yaml": "^4.1.0"
+  },
+  "scripts": {
+    "postinstall": "node scripts/patch-ffapis.cjs"
+  }
+}
