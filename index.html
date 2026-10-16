@@ -3,51 +3,951 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#10120f">
-<title>FF Like Hub — Free Fire Like Tool</title>
+<meta name="theme-color" content="#070914">
+<meta name="description" content="FF Like Hub — Free Fire player tools and player information.">
+<title>FF Like Hub — Ultimate Gaming Portal</title>
+
 <style>
-:root{--bg:#0d0f0d;--panel:#171a16;--panel2:#20251e;--lime:#c8ff45;--text:#f5f7f1;--muted:#a3ad9b;--line:#30372b;--red:#ff7878}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#29351a 0,transparent 48%),var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
-.wrap{width:min(1040px,92%);margin:auto}.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid #ffffff12}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.3px}.logo{display:grid;place-items:center;width:38px;height:38px;background:var(--lime);color:#111;border-radius:12px;font-weight:1000}.badge{font-size:12px;color:var(--lime);border:1px solid #c8ff4544;border-radius:99px;padding:6px 10px}
-.hero{text-align:center;padding:55px 0 30px}.eyebrow{color:var(--lime);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(34px,6vw,58px);line-height:1.05;letter-spacing:-1.7px;margin:15px 0}.hero h1 span{color:var(--lime)}.hero p{color:var(--muted);max-width:600px;margin:0 auto}
-.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;padding-bottom:38px}.card{background:linear-gradient(145deg,#1b1f19,#141713);border:1px solid var(--line);border-radius:22px;padding:25px;box-shadow:0 20px 60px #0003}.card h2{font-size:20px;margin:0 0 5px}.sub{color:var(--muted);font-size:13px;margin:0 0 23px}.field{margin:18px 0}.field label{display:block;font-weight:700;font-size:13px;margin-bottom:8px;color:#dfe5d8}.field input,.field select{width:100%;background:#0e110d;border:1px solid #394032;border-radius:12px;padding:14px;color:var(--text);font:inherit;outline:none}.field input:focus,.field select:focus{border-color:var(--lime);box-shadow:0 0 0 3px #c8ff451c}.hint{color:var(--muted);font-size:12px;margin-top:6px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.check{display:flex;align-items:flex-start;gap:10px;color:var(--muted);font-size:12px;margin:18px 0}.check input{margin-top:4px;accent-color:var(--lime)}button{width:100%;border:0;border-radius:13px;padding:15px 18px;background:var(--lime);color:#11150c;font-size:15px;font-weight:900;cursor:pointer;transition:.2s}button:hover{filter:brightness(1.05);transform:translateY(-1px)}button:disabled{opacity:.55;cursor:wait;transform:none}.status{display:none;margin-top:17px;padding:14px;border-radius:12px;background:#0d100c;border:1px solid var(--line);font-size:13px;overflow-wrap:anywhere}.status.show{display:block}.status.error{border-color:#793e3e;color:#ffd2d2}.status.good{border-color:#526b2d;color:#e6ffc1}.sidebox{background:#10130f;border:1px solid var(--line);border-radius:15px;padding:16px;margin-top:14px}.sidebox strong{display:block;font-size:14px;margin-bottom:5px}.sidebox p{font-size:12px;color:var(--muted);margin:0}.statusrow{display:flex;justify-content:space-between;align-items:center;margin:15px 0;color:var(--muted);font-size:13px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#88917f;margin-right:7px}.foot{border-top:1px solid #ffffff12;padding:22px 0 30px;color:var(--muted);font-size:12px;display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}.foot a{color:var(--lime)}@media(max-width:760px){.layout{grid-template-columns:1fr}.hero{padding-top:40px}.card{padding:20px}.nav{padding:16px 0}.row{grid-template-columns:1fr}}
+:root {
+  --bg: #070914;
+  --panel: rgba(15, 20, 39, .82);
+  --panel2: rgba(21, 28, 52, .9);
+  --blue: #42d9ff;
+  --purple: #9470ff;
+  --lime: #c8ff45;
+  --text: #f5f7ff;
+  --muted: #a4aecb;
+  --line: rgba(143, 163, 255, .2);
+  --red: #ff707d;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background: var(--bg);
+  font: 15px/1.6 system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ANIMATED GAMING WALLPAPER */
+
+.wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 15% 15%, #172e5a 0%, transparent 43%),
+    radial-gradient(ellipse at 85% 35%, #31184f 0%, transparent 43%),
+    radial-gradient(ellipse at 50% 100%, #102d42 0%, transparent 55%),
+    #070914;
+}
+
+.wallpaper::before,
+.wallpaper::after {
+  content: "";
+  position: absolute;
+  width: 75vw;
+  height: 75vw;
+  max-width: 850px;
+  max-height: 850px;
+  border-radius: 50%;
+  filter: blur(95px);
+  opacity: .22;
+  animation: aurora 18s ease-in-out infinite alternate;
+}
+
+.wallpaper::before {
+  background: #087dff;
+  top: -35%;
+  left: -25%;
+}
+
+.wallpaper::after {
+  background: #7b35ff;
+  right: -30%;
+  bottom: -45%;
+  animation-delay: -8s;
+}
+
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: .65;
+}
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .13;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(255,255,255,.035) 4px
+  );
+}
+
+@keyframes aurora {
+  from { transform: translate3d(-3%, -2%, 0) scale(.9); }
+  to { transform: translate3d(10%, 8%, 0) scale(1.15); }
+}
+
+/* LAYOUT */
+
+.wrap {
+  width: min(1080px, 92%);
+  margin: auto;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-weight: 950;
+  letter-spacing: 1px;
+  font-size: 15px;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  color: #06101a;
+  border-radius: 13px;
+  background: linear-gradient(135deg, var(--blue), var(--lime));
+  box-shadow: 0 0 28px #42d9ff38;
+  font-weight: 1000;
+  font-size: 17px;
+}
+
+.badge {
+  color: var(--blue);
+  border: 1px solid #42d9ff55;
+  background: #42d9ff0c;
+  border-radius: 99px;
+  padding: 6px 11px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 65px 0 35px;
+}
+
+.eyebrow {
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 7vw, 68px);
+  line-height: 1.04;
+  letter-spacing: -2px;
+  margin: 17px 0;
+  text-shadow: 0 0 38px #42d9ff12;
+}
+
+.hero h1 span {
+  background: linear-gradient(90deg, var(--blue), #b7a0ff, var(--lime));
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.hero p {
+  max-width: 610px;
+  margin: auto;
+  color: var(--muted);
+}
+
+.hero-line {
+  width: 100px;
+  height: 3px;
+  margin: 25px auto 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, transparent, var(--blue), var(--purple), transparent);
+  box-shadow: 0 0 18px #42d9ff70;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 20px;
+  padding-bottom: 24px;
+  align-items: start;
+}
+
+.card {
+  position: relative;
+  min-width: 0;
+  padding: 25px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: linear-gradient(145deg, rgba(19,27,51,.9), rgba(10,14,29,.9));
+  box-shadow: 0 22px 65px #0004, inset 0 1px #ffffff08;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #42d9ff80, transparent);
+  pointer-events: none;
+}
+
+.card h2 {
+  margin: 0 0 5px;
+  font-size: 21px;
+  letter-spacing: -.3px;
+}
+
+.sub {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.section-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 13px;
+  border: 1px solid #42d9ff40;
+  border-radius: 12px;
+  background: #42d9ff12;
+  font-size: 19px;
+}
+
+.field {
+  margin: 17px 0;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #e0e8ff;
+  font-weight: 750;
+  font-size: 13px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 49px;
+  padding: 13px 14px;
+  border: 1px solid #34415f;
+  border-radius: 12px;
+  background: rgba(5,9,22,.85);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.field input::placeholder {
+  color: #75819e;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px #42d9ff18, 0 0 20px #42d9ff0b;
+}
+
+.field select option {
+  background: #10162a;
+}
+
+.hint {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 18px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.check input {
+  margin-top: 5px;
+  accent-color: var(--blue);
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  min-height: 49px;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(100deg, #42d9ff, #8e9cff);
+  color: #07101d;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 950;
+  cursor: pointer;
+  box-shadow: 0 7px 25px #42d9ff1d;
+  transition: transform .2s, filter .2s, box-shadow .2s;
+}
+
+.btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px #42d9ff25;
+}
+
+.btn:disabled {
+  opacity: .6;
+  cursor: wait;
+  transform: none;
+}
+
+.btn-green {
+  background: linear-gradient(100deg, #c8ff45, #6bffc4);
+  box-shadow: 0 7px 25px #c8ff4517;
+}
+
+.status {
+  display: none;
+  margin-top: 16px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #080d1b;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.status.show { display: block; }
+.status.error { border-color: #a34354; color: #ffc6ce; }
+.status.good { border-color: #477d66; color: #b8ffdc; }
+
+.status.loading {
+  display: block;
+  border-color: #42d9ff66;
+  color: #bdefff;
+}
+
+.sidebox {
+  padding: 16px;
+  margin-top: 13px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: rgba(5,9,22,.6);
+}
+
+.sidebox strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.sidebox p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.statusrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 15px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: #8790a6;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.player-output {
+  margin-top: 18px;
+}
+
+.player-output:empty {
+  display: none;
+}
+
+.player-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.player-item {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #080d1bc9;
+}
+
+.player-item small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.player-item strong {
+  display: block;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+
+.player-json {
+  max-height: 260px;
+  overflow: auto;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #050814;
+  color: #c9eaff;
+  font-size: 11px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 22px 0 30px;
+  border-top: 1px solid #ffffff12;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.foot a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.foot a:hover { text-decoration: underline; }
+
+@media (max-width: 760px) {
+  .layout { grid-template-columns: 1fr; }
+  .hero { padding: 48px 0 30px; }
+  .hero h1 { letter-spacing: -1.3px; }
+  .card { padding: 20px; }
+  .nav { padding: 15px 0; }
+}
+
+@media (max-width: 380px) {
+  .row, .player-grid { grid-template-columns: 1fr; }
+  .badge { font-size: 9px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
 </style>
 </head>
+
 <body>
+<div class="wallpaper" aria-hidden="true"></div>
+<canvas id="particles" aria-hidden="true"></canvas>
+<div class="scanlines" aria-hidden="true"></div>
+
 <div class="wrap">
-<header class="nav"><div class="brand"><div class="logo">FF</div><span>LIKE HUB</span></div><div class="badge">COMMUNITY TOOL</div></header>
-<section class="hero"><div class="eyebrow">Free Fire • Player utility</div><h1>Give your profile<br><span>a little boost.</span></h1><p>Enter your player UID, choose the account region, and send a like request through the connected API.</p></section>
-<main class="layout">
-<section class="card">
-<h2>Send Likes</h2><p class="sub">Check your UID and region before submitting.</p>
-<form id="likeForm">
-<div class="field"><label for="uid">Free Fire Player UID</label><input id="uid" name="uid" inputmode="numeric" autocomplete="off" placeholder="e.g. 1234567890" required maxlength="20" pattern="[0-9]{5,20}"><div class="hint">Digits only — do not enter your password or login details.</div></div>
-<div class="row">
-<div class="field"><label for="region">Account region</label><select id="region" name="region"><option value="pk" selected>Pakistan (PK)</option><option value="sg">Singapore (SG)</option><option value="ind">India (IND)</option><option value="bd">Bangladesh (BD)</option><option value="me">Middle East (ME)</option><option value="id">Indonesia (ID)</option><option value="br">Brazil (BR)</option><option value="th">Thailand (TH)</option><option value="vn">Vietnam (VN)</option><option value="ru">Russia (RU)</option><option value="us">United States (US)</option><option value="my">Malaysia (MY)</option><option value="ph">Philippines (PH)</option><option value="eg">Egypt (EG)</option><option value="sa">Saudi Arabia (SA)</option></select></div>
-<div class="field"><label for="count">Request amount</label><select id="count" name="count"><option value="1">1 request</option><option value="5">5 requests</option><option value="10">10 requests</option><option value="20">20 requests</option><option value="40">40 requests (max)</option></select></div>
+  <header class="nav">
+    <div class="brand">
+      <div class="logo">FF</div>
+      <span>LIKE HUB</span>
+    </div>
+    <div class="badge">GAMING PORTAL</div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Free Fire · Player Utility</div>
+    <h1>ENTER THE<br><span>BATTLE ZONE.</span></h1>
+    <p>Player information and community tools, brought together in one sleek gaming experience.</p>
+    <div class="hero-line"></div>
+  </section>
+
+  <main class="layout">
+    <div>
+      <!-- PLAYER INFORMATION -->
+      <section class="card">
+        <div class="section-icon">⌕</div>
+        <h2>Player Information</h2>
+        <p class="sub">Look up a player using their public Free Fire UID.</p>
+
+        <form id="playerForm">
+          <div class="field">
+            <label for="playerUid">Player UID</label>
+            <input id="playerUid" inputmode="numeric" autocomplete="off"
+              placeholder="Enter player UID" maxlength="15"
+              pattern="[0-9]{5,15}" required>
+            <div class="hint">Use the player's public UID only. No password needed.</div>
+          </div>
+
+          <div class="field">
+            <label for="playerRegion">Player region</label>
+            <select id="playerRegion">
+              <option value="PK" selected>Pakistan (PK)</option>
+              <option value="BD">Bangladesh (BD)</option>
+              <option value="IND">India (IND)</option>
+              <option value="BR">Brazil (BR)</option>
+              <option value="US">United States (US)</option>
+              <option value="SAC">South America (SAC)</option>
+              <option value="NA">North America (NA)</option>
+              <option value="TH">Thailand (TH)</option>
+              <option value="ID">Indonesia (ID)</option>
+              <option value="SG">Singapore (SG)</option>
+            </select>
+          </div>
+
+          <button class="btn" id="playerBtn" type="submit">
+            🔎 Search Player
+          </button>
+          <div class="status" id="playerStatus" role="status" aria-live="polite"></div>
+          <div class="player-output" id="playerOutput"></div>
+        </form>
+      </section>
+
+      <!-- EXISTING LIKE FORM -->
+      <section class="card" style="margin-top:20px">
+        <div class="section-icon">♥</div>
+        <h2>Send Likes</h2>
+        <p class="sub">Submit a like request through the connected backend API.</p>
+
+        <form id="likeForm">
+          <div class="field">
+            <label for="uid">Free Fire Player UID</label>
+            <input id="uid" name="uid" inputmode="numeric" autocomplete="off"
+              placeholder="e.g. 1234567890" required maxlength="20"
+              pattern="[0-9]{5,20}">
+            <div class="hint">Digits only. Never enter your account password.</div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="region">Account region</label>
+              <select id="region" name="region">
+                <option value="pk" selected>Pakistan (PK)</option>
+                <option value="sg">Singapore (SG)</option>
+                <option value="ind">India (IND)</option>
+                <option value="bd">Bangladesh (BD)</option>
+                <option value="me">Middle East (ME)</option>
+                <option value="id">Indonesia (ID)</option>
+                <option value="br">Brazil (BR)</option>
+                <option value="th">Thailand (TH)</option>
+                <option value="vn">Vietnam (VN)</option>
+                <option value="ru">Russia (RU)</option>
+                <option value="us">United States (US)</option>
+                <option value="my">Malaysia (MY)</option>
+                <option value="ph">Philippines (PH)</option>
+                <option value="eg">Egypt (EG)</option>
+                <option value="sa">Saudi Arabia (SA)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="count">Request amount</label>
+              <select id="count" name="count">
+                <option value="1">1 request</option>
+                <option value="5">5 requests</option>
+                <option value="10">10 requests</option>
+                <option value="20">20 requests</option>
+                <option value="40">40 requests (max)</option>
+              </select>
+            </div>
+          </div>
+
+          <label class="check">
+            <input type="checkbox" id="confirm" required>
+            <span>I confirm the UID is correct and understand that the request may fail if the service is unavailable.</span>
+          </label>
+
+          <button class="btn btn-green" id="submitBtn" type="submit">
+            ♥ Send Like Request
+          </button>
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+    </div>
+
+    <!-- STATUS PANEL -->
+    <aside class="card">
+      <div class="section-icon">◈</div>
+      <h2>System Status</h2>
+      <p class="sub">Connection status for this website's backend.</p>
+
+      <div class="statusrow">
+        <span><i class="dot" id="healthDot"></i><span id="healthText">Checking connection…</span></span>
+        <span id="healthTime">—</span>
+      </div>
+
+      <div class="sidebox">
+        <strong>🔒 Privacy first</strong>
+        <p>Only enter a public player UID. Never share your Free Fire, Facebook, Google or other account passwords.</p>
+      </div>
+
+      <div class="sidebox">
+        <strong>⚡ Player lookup</strong>
+        <p>Player information depends on the configured external API, its supported regions and its response.</p>
+      </div>
+
+      <div class="sidebox">
+        <strong>🎮 Community project</strong>
+        <p>FF Like Hub is an independent fan-made project and is not affiliated with or endorsed by Garena.</p>
+      </div>
+
+      <div class="sidebox">
+        <strong>🌌 Gaming atmosphere</strong>
+        <p>Animated lights and floating particles create a cinematic background while keeping the interface readable.</p>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    <span>© <span id="year"></span> FF Like Hub</span>
+    <span>Independent fan-made project · Not affiliated with Garena</span>
+    <a href="/api/health" target="_blank" rel="noopener">API health</a>
+  </footer>
 </div>
-<label class="check"><input type="checkbox" id="confirm" required><span>I confirm this is the correct UID and understand the request may fail if the API or game service is unavailable.</span></label>
-<button id="submitBtn" type="submit">Send Like Request ↗</button>
-<div id="status" class="status" role="status" aria-live="polite"></div>
-</form>
-</section>
-<aside class="card">
-<h2>API status</h2><p class="sub">Live check against this website's backend.</p>
-<div class="statusrow"><span><i class="dot" id="healthDot"></i><span id="healthText">Checking connection…</span></span><span id="healthTime">—</span></div>
-<div class="sidebox"><strong>🔒 No account password</strong><p>This page only asks for a public player UID. Never share your Free Fire, Facebook, Google, or game login password.</p></div>
-<div class="sidebox"><strong>⚡ API-powered</strong><p>Requests are sent to the serverless API in this project. The API response decides whether the request succeeded.</p></div>
-<div class="sidebox"><strong>ℹ️ Please note</strong><p>This is an independent community tool, not an official Garena service. Results and availability are not guaranteed.</p></div>
-</aside>
-</main>
-<footer class="foot"><span>© <span id="year"></span> FF Like Hub</span><span>Independent fan-made project · Not affiliated with Garena</span><a href="/api/health" target="_blank" rel="noopener">API health</a></footer>
-</div>
+
 <script>
-const form=document.getElementById('likeForm'),btn=document.getElementById('submitBtn'),statusBox=document.getElementById('status');
-document.getElementById('year').textContent=new Date().getFullYear();
-function showStatus(message,type){statusBox.className='status show '+type;statusBox.textContent=message}
-async function checkHealth(){const dot=document.getElementById('healthDot'),txt=document.getElementById('healthText'),time=document.getElementById('healthTime');try{const r=await fetch('/api/health');const d=await r.json();if(r.ok&&d.success){dot.style.background='#c8ff45';txt.textContent='Backend reachable';time.textContent='Online';}else throw new Error('Unavailable')}catch(e){dot.style.background='#ff7878';txt.textContent='Backend not reachable';time.textContent='Offline';}}
+const $ = (id) => document.getElementById(id);
+
+$("year").textContent = new Date().getFullYear();
+
+function showStatus(element, message, type) {
+  element.className = "status show " + type;
+  element.textContent = message;
+}
+
+async function checkHealth() {
+  const dot = $("healthDot");
+  const txt = $("healthText");
+  const time = $("healthTime");
+
+  try {
+    const response = await fetch("/api/health");
+    const data = await response.json();
+
+    if (!response.ok || !data.success) throw new Error("Unavailable");
+
+    dot.style.background = "#65ffad";
+    txt.textContent = "Backend reachable";
+    time.textContent = "Online";
+  } catch {
+    dot.style.background = "#ff707d";
+    txt.textContent = "Backend unavailable";
+    time.textContent = "Offline";
+  }
+}
+
 checkHealth();
-form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;btn.disabled=true;btn.textContent='Sending request…';statusBox.className='status';try{const payload={uid:document.getElementById('uid').value.trim(),region:document.getElementById('region').value,count:Number(document.getElementById('count').value)};const response=await fetch('/api/like',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});let data;try{data=await response.json()}catch{throw new Error('The API returned an unreadable response.')}if(!response.ok||data.success===false){showStatus('Request unsuccessful: '+(data.error||data.message||('HTTP '+response.status)),'error')}else{showStatus('API response received. '+(data.message||'Request processed.')+' Successful: '+(data.success_count??'—')+' · Failed: '+(data.failed_count??'—'),'good')}}catch(err){showStatus('Could not connect to the API. Check deployment and try again. Details: '+err.message,'error')}finally{btn.disabled=false;btn.textContent='Send Like Request ↗';checkHealth()}});
+
+/* PLAYER INFORMATION */
+$("playerForm").addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const form = $("playerForm");
+  const button = $("playerBtn");
+  const status = $("playerStatus");
+  const output = $("playerOutput");
+
+  if (!form.reportValidity()) return;
+
+  const uid = $("playerUid").value.trim();
+  const region = $("playerRegion").value;
+
+  button.disabled = true;
+  button.textContent = "Searching…";
+  output.replaceChildren();
+  showStatus(status, "Connecting to player information service…", "loading");
+
+  try {
+    const params = new URLSearchParams({ uid, region });
+    const response = await fetch("/api/player-info?" + params.toString(), {
+      method: "GET",
+      headers: { "Accept": "application/json" },
+      cache: "no-store"
+    });
+
+    let result;
+    try {
+      result = await response.json();
+    } catch {
+      throw new Error("The server returned an unreadable response.");
+    }
+
+    if (!response.ok || result.success === false) {
+      throw new Error(result.message || result.error || ("Request failed (HTTP " + response.status + ")."));
+    }
+
+    const data = result.data ?? result;
+
+    showStatus(status, "Player information received.", "good");
+
+    if (data && typeof data === "object" && !Array.isArray(data)) {
+      const entries = Object.entries(data).filter(([, value]) =>
+        value !== null && value !== undefined &&
+        typeof value !== "object"
+      );
+
+      const grid = document.createElement("div");
+      grid.className = "player-grid";
+
+      for (const [key, value] of entries.slice(0, 16)) {
+        const item = document.createElement("div");
+        item.className = "player-item";
+
+        const label = document.createElement("small");
+        label.textContent = key.replace(/([A-Z])/g, " $1")
+          .replace(/[_-]/g, " ")
+          .replace(/\b\w/g, char => char.toUpperCase());
+
+        const val = document.createElement("strong");
+        val.textContent = String(value);
+
+        item.append(label, val);
+        grid.appendChild(item);
+      }
+
+      if (entries.length) output.appendChild(grid);
+
+      const details = document.createElement("details");
+      details.style.marginTop = "12px";
+
+      const summary = document.createElement("summary");
+      summary.textContent = "View raw API response";
+      summary.style.cursor = "pointer";
+      summary.style.color = "var(--blue)";
+
+      const pre = document.createElement("pre");
+      pre.className = "player-json";
+      pre.textContent = JSON.stringify(data, null, 2);
+
+      details.append(summary, pre);
+      output.appendChild(details);
+
+      if (!entries.length) {
+        const note = document.createElement("p");
+        note.className = "sub";
+        note.textContent = "The API responded, but returned no simple player fields. Check the raw response.";
+        output.prepend(note);
+      }
+    } else {
+      const pre = document.createElement("pre");
+      pre.className = "player-json";
+      pre.textContent = String(data);
+      output.appendChild(pre);
+    }
+  } catch (error) {
+    showStatus(
+      status,
+      "Player lookup failed: " + (error.message || "Service unavailable") +
+      "\nCheck the API endpoint, API key configuration and supported region.",
+      "error"
+    );
+  } finally {
+    button.disabled = false;
+    button.textContent = "🔎 Search Player";
+  }
+});
+
+/* EXISTING SEND LIKES FEATURE */
+const likeForm = $("likeForm");
+const likeButton = $("submitBtn");
+const likeStatus = $("status");
+
+likeForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (!likeForm.reportValidity()) return;
+
+  likeButton.disabled = true;
+  likeButton.textContent = "Sending request…";
+  likeStatus.className = "status";
+
+  try {
+    const payload = {
+      uid: $("uid").value.trim(),
+      region: $("region").value,
+      count: Number($("count").value)
+    };
+
+    const response = await fetch("/api/like", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      throw new Error("The API returned an unreadable response.");
+    }
+
+    if (!response.ok || data.success === false) {
+      showStatus(
+        likeStatus,
+        "Request unsuccessful: " +
+        (data.error || data.message || ("HTTP " + response.status)),
+        "error"
+      );
+    } else {
+      showStatus(
+        likeStatus,
+        "API response received. " +
+        (data.message || "Request processed.") +
+        " Successful: " + (data.success_count ?? "—") +
+        " · Failed: " + (data.failed_count ?? "—"),
+        "good"
+      );
+    }
+  } catch (error) {
+    showStatus(
+      likeStatus,
+      "Could not connect to the Likes API. " + error.message,
+      "error"
+    );
+  } finally {
+    likeButton.disabled = false;
+    likeButton.textContent = "♥ Send Like Request";
+    checkHealth();
+  }
+});
+
+/* LIGHTWEIGHT ANIMATED PARTICLES */
+(() => {
+  const canvas = $("particles");
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let width = 0;
+  let height = 0;
+  let particles = [];
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const count = Math.min(65, Math.max(20, Math.floor(width / 8)));
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 1.7 + .4,
+      speed: Math.random() * .28 + .08,
+      alpha: Math.random() * .55 + .15,
+      drift: (Math.random() - .5) * .25
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (const p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(125, 207, 255, " + p.alpha + ")";
+      ctx.fill();
+
+      if (!reducedMotion) {
+        p.y -= p.speed;
+        p.x += p.drift;
+
+        if (p.y < -5) {
+          p.y = height + 5;
+          p.x = Math.random() * width;
+        }
+        if (p.x < -5) p.x = width + 5;
+        if (p.x > width + 5) p.x = -5;
+      }
+    }
+
+    if (!reducedMotion) requestAnimationFrame(draw);
+  }
+
+  resize();
+  draw();
+  window.addEventListener("resize", resize, { passive: true });
+  window.addEventListener("resize", () => {
+    if (!reducedMotion) {
+      cancelAnimationFrame(window.__ffParticleFrame);
+      window.__ffParticleFrame = requestAnimationFrame(draw);
+    }
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
