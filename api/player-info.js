@@ -115,4 +115,4 @@ export default async function handler(req, res) {
           : "Unable to connect to the player API. Please try again later."
     });
   }
-  }
+}
