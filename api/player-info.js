@@ -9,13 +9,14 @@ export default async function handler(req, res) {
   }
 
   const uid = String(req.query.uid || "").trim();
+
   const region = String(req.query.region || "PK")
     .trim()
     .toUpperCase();
 
   const allowedRegions = [
-    "PK", "BD", "IND", "BR", "US", "SAC",
-    "NA", "TH", "ID", "SG"
+    "PK", "BD", "IND", "BR", "US",
+    "SAC", "NA", "TH", "ID", "SG"
   ];
 
   if (!/^\d{5,15}$/.test(uid)) {
@@ -34,10 +35,12 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.GAMESKINBO_API_KEY;
 
-  if (!apiKey) {
+  if (!apiKey || !apiKey.trim()) {
+    console.error("GAMESKINBO_API_KEY is missing.");
+
     return res.status(500).json({
       success: false,
-      message: "Player information API key is not configured."
+      message: "API key is missing. Check Vercel Environment Variables."
     });
   }
 
@@ -49,32 +52,67 @@ export default async function handler(req, res) {
     url.searchParams.set("uid", uid);
     url.searchParams.set("region", region);
 
-    const response = await fetch(url, {
+    const response = await fetch(url.toString(), {
       method: "GET",
       headers: {
-        "x-api-key": apiKey
+        "x-api-key": apiKey.trim(),
+        "Accept": "application/json"
       },
-      signal: AbortSignal.timeout(15000)
+      signal: AbortSignal.timeout(20000)
     });
 
-    const data = await response.json();
+    const responseText = await response.text();
+
+    let data;
+
+    try {
+      data = JSON.parse(responseText);
+    } catch {
+      console.error(
+        "Gameskinbo returned a non-JSON response. HTTP:",
+        response.status
+      );
+
+      return res.status(502).json({
+        success: false,
+        message: "The player API returned an invalid response."
+      });
+    }
 
     if (!response.ok) {
-      return res.status(response.status).json({
+      console.error(
+        "Gameskinbo API error. HTTP:",
+        response.status
+      );
+
+      return res.status(502).json({
         success: false,
         message:
-          data.error || "Unable to retrieve player information."
+          response.status === 401 || response.status === 403
+            ? "API authentication failed. Check your API key and account access."
+            : response.status === 429
+            ? "API request limit reached. Check your Gameskinbo usage."
+            : "Gameskinbo could not retrieve player information."
       });
     }
 
     return res.status(200).json({
       success: true,
-      data
+      data: data
     });
+
   } catch (error) {
+    console.error(
+      "Player API request failed:",
+      error.name || "UnknownError"
+    );
+
     return res.status(502).json({
       success: false,
-      message: "Player information service is temporarily unavailable."
+      message:
+        error.name === "TimeoutError"
+          ? "The player API request timed out. Please try again."
+          : "Unable to connect to the player API. Please try again later."
     });
   }
-}
+  }
