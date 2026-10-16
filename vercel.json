@@ -2,7 +2,7 @@
   "functions": {
     "api/*.js": {
       "maxDuration": 60,
-      "includeFiles": "node_modules/ffapis/config/settings.yaml"
+      "includeFiles": "node_modules/ffapis/**/*"
     }
   }
 }
