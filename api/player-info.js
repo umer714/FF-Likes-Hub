@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+   export default async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
 
   if (req.method !== "GET") {
@@ -9,7 +9,6 @@ export default async function handler(req, res) {
   }
 
   const uid = String(req.query.uid || "").trim();
-
   const region = String(req.query.region || "PK")
     .trim()
     .toUpperCase();
@@ -36,11 +35,11 @@ export default async function handler(req, res) {
   const apiKey = process.env.GAMESKINBO_API_KEY;
 
   if (!apiKey || !apiKey.trim()) {
-    console.error("GAMESKINBO_API_KEY is missing.");
+    console.error("DIAGNOSTIC: API key is missing.");
 
     return res.status(500).json({
       success: false,
-      message: "API key is missing. Check Vercel Environment Variables."
+      message: "API key is not configured."
     });
   }
 
@@ -61,38 +60,46 @@ export default async function handler(req, res) {
       signal: AbortSignal.timeout(20000)
     });
 
-    const responseText = await response.text();
+    const contentType =
+      response.headers.get("content-type") || "unknown";
+
+    const body = await response.text();
 
     let data;
 
     try {
-      data = JSON.parse(responseText);
+      data = JSON.parse(body);
     } catch {
-      console.error(
-        "Gameskinbo returned a non-JSON response. HTTP:",
-        response.status
-      );
+      console.error("DIAGNOSTIC: Invalid JSON from Gameskinbo", {
+        status: response.status,
+        contentType: contentType,
+        bodyPreview: body.slice(0, 300)
+      });
 
       return res.status(502).json({
         success: false,
-        message: "The player API returned an invalid response."
+        message: "Gameskinbo returned a non-JSON response.",
+        upstreamStatus: response.status,
+        upstreamContentType: contentType
       });
     }
 
     if (!response.ok) {
-      console.error(
-        "Gameskinbo API error. HTTP:",
-        response.status
-      );
+      console.error("DIAGNOSTIC: Gameskinbo API error", {
+        status: response.status,
+        contentType: contentType
+      });
 
       return res.status(502).json({
         success: false,
         message:
-          response.status === 401 || response.status === 403
-            ? "API authentication failed. Check your API key and account access."
+          response.status === 401 ||
+          response.status === 403
+            ? "API authentication failed. Check your API key."
             : response.status === 429
-            ? "API request limit reached. Check your Gameskinbo usage."
-            : "Gameskinbo could not retrieve player information."
+            ? "API usage limit reached."
+            : "Gameskinbo could not retrieve player information.",
+        upstreamStatus: response.status
       });
     }
 
@@ -102,17 +109,17 @@ export default async function handler(req, res) {
     });
 
   } catch (error) {
-    console.error(
-      "Player API request failed:",
-      error.name || "UnknownError"
-    );
+    console.error("DIAGNOSTIC: Player API request failed", {
+      name: error.name || "UnknownError",
+      message: error.message || "No error message"
+    });
 
     return res.status(502).json({
       success: false,
       message:
         error.name === "TimeoutError"
-          ? "The player API request timed out. Please try again."
-          : "Unable to connect to the player API. Please try again later."
+          ? "Gameskinbo API request timed out."
+          : "Unable to connect to Gameskinbo API."
     });
   }
-}
+}     
