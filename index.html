@@ -24,6 +24,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 
 html {
   scroll-behavior: smooth;
@@ -1057,9 +1058,12 @@ function renderAuthSession(session) {
     logout.addEventListener("click", async () => {
       const { error } = await supabaseClient.auth.signOut();
       if (error) authMessage(error.message, "error");
-      else { authMessage("You have logged out.", "good"); renderAuthSession(null); }
+      else { renderAuthSession(null); closeAuth(); showStatus($("playerStatus"), "You have logged out.", "good"); }
     });
     userBox.append(email, logout);
+    $("authTabs").hidden = true;
+    $("authForm").hidden = true;
+    $("authNote").hidden = true;
     $("authTitle").textContent = "Your account";
     $("authCopy").textContent = "You are signed in to BattleCore.";
     $("authForm").hidden = true;
@@ -1319,15 +1323,17 @@ $("authForm").addEventListener("submit", async (event) => {
       if (error) throw error;
       if (data.session) {
         renderAuthSession(data.session);
-        authMessage("Account created and you are signed in.", "good");
+        closeAuth();
+        showStatus($("playerStatus"), "Account created successfully. You are now signed in.", "good");
       } else {
-        authMessage("Account created. Check your email for the confirmation link, then log in.", "good");
+        authMessage("Account created, but email confirmation is still enabled in Supabase. Turn off Confirm email in Supabase Auth settings to sign in immediately.", "error");
       }
     } else {
       const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
       if (error) throw error;
       renderAuthSession(data.session);
-      authMessage("Login successful.", "good");
+      closeAuth();
+      showStatus($("playerStatus"), "Login successful. Welcome back to BattleCore.", "good");
     }
   } catch (error) {
     authMessage(error.message || "Authentication failed. Please try again.", "error");
