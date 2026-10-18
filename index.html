@@ -645,6 +645,138 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .hero h1 { font-size: 36px; }
 }
 
+
+/* ULTRA EDITION — CINEMATIC GAMING BACKDROP + DISPLAY TYPOGRAPHY */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #050711;
+  --panel: rgba(9, 15, 32, .88);
+  --panel2: rgba(14, 23, 47, .94);
+  --blue: #48e8ff;
+  --purple: #a16dff;
+  --lime: #d2ff4d;
+  --text: #f5f7ff;
+  --muted: #a9b7d8;
+  --line: rgba(105, 174, 255, .24);
+}
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: .05px;
+  background: #050711;
+}
+.wallpaper {
+  background:
+    linear-gradient(180deg, rgba(4,7,17,.45) 0%, rgba(4,7,17,.72) 48%, rgba(4,7,17,.94) 100%),
+    radial-gradient(ellipse at 50% 4%, rgba(34, 110, 255, .26), transparent 50%),
+    radial-gradient(ellipse at 82% 28%, rgba(143, 48, 255, .24), transparent 44%),
+    radial-gradient(ellipse at 15% 72%, rgba(0, 222, 255, .16), transparent 45%),
+    #050711;
+}
+.wallpaper::before, .wallpaper::after {
+  width: 92vw; height: 92vw; max-width: 1100px; max-height: 1100px;
+  filter: blur(100px); opacity: .3; animation-duration: 22s;
+}
+.wallpaper::before { background: #075cff; top: -40%; left: -28%; }
+.wallpaper::after { background: #8b2cff; right: -35%; bottom: -50%; animation-delay: -10s; }
+#particles { opacity: .82; }
+.scanlines {
+  opacity: .07;
+  background: repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, rgba(180,220,255,.055) 5px);
+}
+.wrap { width: min(1200px, 92%); }
+.nav { min-height: 88px; border-bottom-color: rgba(110,163,255,.18); }
+.logo {
+  width: 50px; height: 50px; border-radius: 15px;
+  background: linear-gradient(140deg, #53efff 0%, #8d8bff 55%, #d2ff4d 130%);
+  box-shadow: 0 0 0 5px rgba(72,232,255,.045), 0 10px 35px rgba(72,232,255,.22), inset 0 1px rgba(255,255,255,.8);
+  transform: rotate(-3deg);
+}
+.logo span { font-family: 'Orbitron', sans-serif; font-size: 15px; letter-spacing: -1.4px; transform: rotate(3deg); }
+.brand-name { font-family: 'Orbitron', sans-serif; font-size: 13px; letter-spacing: 1.5px; }
+.brand-name > span { color: #9ceeff; }
+.brand-name small { font-family: 'Inter', sans-serif; letter-spacing: 2.8px; }
+.nav-link, .live-pill { font-family: 'Inter', sans-serif; }
+.hero {
+  padding: 90px 0 48px;
+  isolation: isolate;
+}
+.hero::before {
+  content: "";
+  position: absolute; z-index: -1; left: 50%; top: 40px;
+  width: min(780px, 100%); height: 320px; transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(46,105,255,.15), rgba(119,55,255,.07) 42%, transparent 72%);
+  filter: blur(20px); pointer-events: none;
+}
+.eyebrow {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px; letter-spacing: 3.2px; color: #a6efff;
+}
+.hero h1 {
+  font-family: 'Orbitron', 'Rajdhani', sans-serif;
+  font-size: clamp(42px, 8vw, 88px);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: clamp(-4px, -.45vw, -1.5px);
+  margin: 24px 0 20px;
+  text-shadow: 0 0 35px rgba(72,232,255,.1), 0 16px 70px rgba(0,0,0,.55);
+}
+.hero h1 span {
+  background-image: linear-gradient(95deg, #55eaff 0%, #a69bff 50%, #d4ff6b 100%);
+  filter: drop-shadow(0 0 18px rgba(91,214,255,.12));
+}
+.hero-copy {
+  max-width: 630px;
+  font-size: clamp(14px, 1.5vw, 17px);
+  line-height: 1.9;
+  color: #b7c4e2;
+}
+.hero-actions { margin-top: 30px; }
+.hero-cta, .hero-secondary {
+  min-height: 48px; padding: 0 21px; border-radius: 13px;
+  font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: .15px;
+}
+.hero-cta { box-shadow: 0 8px 34px rgba(72,232,255,.2), inset 0 1px rgba(255,255,255,.55); }
+.hero-secondary { background: rgba(11,18,38,.58); backdrop-filter: blur(12px); }
+.card {
+  border: 1px solid rgba(116,166,255,.22);
+  background: linear-gradient(145deg, rgba(13,22,46,.91), rgba(6,10,24,.93));
+  box-shadow: 0 26px 80px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.045);
+}
+.card h2 { font-family: 'Rajdhani', 'Inter', sans-serif; font-size: 27px; font-weight: 700; letter-spacing: .1px; }
+.sub { font-size: 13px; }
+.section-icon { box-shadow: inset 0 1px rgba(255,255,255,.05), 0 8px 22px rgba(72,232,255,.05); }
+.field label { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: .25px; }
+.field input, .field select {
+  font-family: 'Inter', sans-serif;
+  background: rgba(3,7,18,.8);
+  border-color: rgba(125,159,222,.3);
+}
+.btn {
+  font-family: 'Orbitron', 'Inter', sans-serif;
+  font-size: 11px; letter-spacing: .4px;
+  border-radius: 13px;
+}
+.sidebox { background: linear-gradient(135deg, rgba(11,19,39,.84), rgba(5,9,22,.74)); }
+.sidebox strong { font-family: 'Rajdhani', sans-serif; font-size: 16px; letter-spacing: .25px; }
+.statusrow { font-size: 11px; }
+.foot { font-family: 'Inter', sans-serif; }
+@media (max-width: 760px) {
+  .nav { min-height: 75px; }
+  .hero { padding: 62px 0 35px; }
+  .hero h1 { font-size: clamp(38px, 9vw, 62px); }
+}
+@media (max-width: 430px) {
+  .hero { padding-top: 50px; }
+  .hero h1 { font-size: clamp(35px, 10.5vw, 47px); letter-spacing: -1.6px; }
+  .eyebrow { font-size: 8px; letter-spacing: 1.8px; }
+  .card h2 { font-size: 24px; }
+  .btn { font-size: 10px; letter-spacing: .1px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wallpaper::before, .wallpaper::after { animation: none; }
+}
+
 </style>
 </head>
 
