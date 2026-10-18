@@ -887,6 +887,7 @@ body {
     </div>
     <div class="nav-right"><span class="live-pill"><i></i> PLAYER TOOLS</span><div class="menu-wrap"><button class="menu-dots" id="menuDots" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteMenu">⋮</button><nav class="site-menu" id="siteMenu" aria-label="Main menu" hidden>
       <a href="#playerForm" class="menu-item">▦ <span>Dashboard</span></a>
+      <button class="menu-item" id="installAppBtn" type="button">⬇ <span>Install App</span></button>
       <div class="menu-divider"></div>
       <a href="/about.html" class="menu-item">ⓘ <span>About Us</span></a>
       <a href="/contact.html" class="menu-item">✉ <span>Contact Us</span></a>
@@ -902,7 +903,7 @@ body {
     <div class="eyebrow"><span class="eyebrow-line"></span> THE PLAYER TOOLKIT <span class="eyebrow-line"></span></div>
     <h1>YOUR GAME.<br><span>YOUR EDGE.</span></h1>
     <p class="hero-copy">A streamlined hub for Free Fire player lookup and community tools. Fast to use, easy to navigate, built for mobile.</p>
-    <div class="hero-actions"><a class="hero-cta" href="#playerForm">Find a player <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#likeForm">Send likes <span aria-hidden="true">↓</span></a><button class="hero-secondary" id="installAppBtn" type="button" style="font:inherit;cursor:pointer">⬇ Install App</button></div>
+    <div class="hero-actions"><a class="hero-cta" href="#playerForm">Find a player <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#likeForm">Send likes <span aria-hidden="true">↓</span></a></div>
     <div class="hero-line"></div>
   </section>
 
@@ -1502,6 +1503,7 @@ if ("serviceWorker" in navigator && location.protocol === "https:") {
   const button = document.getElementById("installAppBtn");
   if (!button) return;
   button.addEventListener("click", async () => {
+    if (typeof closeSiteMenu === "function") closeSiteMenu();
     if (window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true) {
       alert("BattleCore is already installed on this device.");
       return;
