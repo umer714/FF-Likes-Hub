@@ -505,6 +505,7 @@ body {
 }
 
 .foot a:hover { text-decoration: underline; }
+.footer-links { display:flex; flex-wrap:wrap; gap:10px 16px; }
 
 @media (max-width: 760px) {
   .layout { grid-template-columns: 1fr; }
@@ -1016,7 +1017,7 @@ body {
   <footer class="foot">
     <span>© <span id="year"></span> BattleCore</span>
     <span>Independent community tools · Not affiliated with or endorsed by Garena</span>
-    <a href="/api/health" target="_blank" rel="noopener">API health</a>
+    <nav class="footer-links" aria-label="Legal and information"><a href="/about.html">About Us</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms</a><a href="/disclaimer.html">Disclaimer</a><a href="/api/health" target="_blank" rel="noopener">API health</a></nav>
   </footer>
 </div>
 
