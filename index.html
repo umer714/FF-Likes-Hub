@@ -778,6 +778,45 @@ body {
   .wallpaper::before, .wallpaper::after { animation: none; }
 }
 
+
+/* ACCOUNT AUTHENTICATION */
+.nav-right { flex-wrap: wrap; justify-content: flex-end; }
+.account-btn {
+  min-height: 39px; padding: 0 14px; border: 1px solid rgba(83,227,255,.45);
+  border-radius: 11px; color: #07101d; background: linear-gradient(105deg,var(--blue),#a9b0ff);
+  font: 800 11px/1.2 Inter, sans-serif; cursor: pointer;
+}
+.auth-backdrop {
+  position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center;
+  padding: 18px; background: rgba(2,4,12,.78); backdrop-filter: blur(12px);
+}
+.auth-backdrop[hidden] { display: none; }
+.auth-modal {
+  position: relative; width: min(440px,100%); max-height: min(92vh,760px); overflow-y: auto;
+  padding: 28px; border: 1px solid rgba(83,227,255,.32); border-radius: 22px;
+  background: linear-gradient(145deg,rgba(16,26,53,.99),rgba(5,9,23,.99));
+  box-shadow: 0 25px 100px #0009, 0 0 45px rgba(72,232,255,.09);
+}
+.auth-close {
+  position: absolute; top: 12px; right: 15px; width: 35px; height: 35px; border: 1px solid var(--line);
+  border-radius: 10px; color: var(--text); background: #ffffff08; font-size: 24px; cursor: pointer;
+}
+.auth-kicker { color: var(--blue); font: 800 9px Inter,sans-serif; letter-spacing: 2.5px; }
+.auth-modal h2 { margin: 12px 35px 5px 0; font: 700 27px Rajdhani,Inter,sans-serif; }
+.auth-copy { color: var(--muted); font-size: 13px; margin: 0 0 20px; }
+.auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 5px; margin-bottom: 20px; border: 1px solid var(--line); border-radius: 12px; background: #03071380; }
+.auth-tab { padding: 11px 8px; border: 0; border-radius: 8px; color: var(--muted); background: transparent; font: 700 12px Inter,sans-serif; cursor: pointer; }
+.auth-tab.active { color: #06101b; background: linear-gradient(100deg,var(--blue),#a9b0ff); }
+.auth-label { display: block; margin: 14px 0 7px; color: #e0e8ff; font: 700 12px Inter,sans-serif; }
+.auth-input { width: 100%; min-height: 48px; padding: 12px 13px; border: 1px solid #34415f; border-radius: 11px; outline: none; color: var(--text); background: #050916; font: 14px Inter,sans-serif; }
+.auth-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px #42d9ff18; }
+.auth-submit { margin-top: 19px; }
+.auth-forgot { display: block; margin: 13px auto 0; padding: 5px; border: 0; color: var(--blue); background: transparent; font: 700 11px Inter,sans-serif; cursor: pointer; }
+.auth-note { margin: 17px 0 0; color: #8794b5; font-size: 10px; text-align: center; }
+.auth-user { margin-top: 18px; padding: 15px; border: 1px solid var(--line); border-radius: 12px; overflow-wrap: anywhere; color: var(--text); background: #050916; font-size: 13px; }
+.auth-user button { margin-top: 12px; padding: 9px 13px; border: 1px solid var(--line); border-radius: 9px; color: var(--text); background: #ffffff08; cursor: pointer; }
+@media(max-width:430px) { .auth-modal { padding: 23px 19px; } .account-btn { padding: 0 10px; font-size: 10px; } }
+
 </style>
 </head>
 
@@ -786,13 +825,34 @@ body {
 <canvas id="particles" aria-hidden="true"></canvas>
 <div class="scanlines" aria-hidden="true"></div>
 
+<div class="auth-backdrop" id="authBackdrop" hidden>
+  <section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <button class="auth-close" id="authClose" type="button" aria-label="Close">×</button>
+    <div class="auth-kicker">BATTLECORE ACCOUNT</div>
+    <h2 id="authTitle">Welcome to BattleCore</h2>
+    <p class="auth-copy" id="authCopy">Sign in or create an account to get started.</p>
+    <div class="auth-tabs" id="authTabs"><button type="button" class="auth-tab active" id="loginTab">Log in</button><button type="button" class="auth-tab" id="signupTab">Create account</button></div>
+    <form id="authForm">
+      <label class="auth-label" for="authEmail">Email</label>
+      <input class="auth-input" id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+      <label class="auth-label" for="authPassword">Password</label>
+      <input class="auth-input" id="authPassword" type="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters" required>
+      <button class="btn auth-submit" id="authSubmit" type="submit">Log in</button>
+      <button class="auth-forgot" id="forgotPassword" type="button">Forgot password?</button>
+      <div class="status" id="authStatus" role="status" aria-live="polite"></div>
+    </form>
+    <div class="auth-user" id="authUser" hidden></div>
+    <p class="auth-note" id="authNote">Use your own email. Never share your password with anyone.</p>
+  </section>
+</div>
+
 <div class="wrap">
   <header class="nav">
     <div class="brand">
       <div class="logo" aria-hidden="true"><span>BC</span><i></i></div>
       <span class="brand-name">BATTLE<span>CORE</span><small>PLAYER TOOLS</small></span>
     </div>
-    <div class="nav-right"><span class="live-pill"><i></i> PLAYER TOOLS</span><a class="nav-link" href="#playerForm">Explore tools <span aria-hidden="true">↘</span></a></div>
+    <div class="nav-right"><span class="live-pill"><i></i> PLAYER TOOLS</span><a class="nav-link" href="#playerForm">Explore tools <span aria-hidden="true">↘</span></a><button class="account-btn" id="accountBtn" type="button">Log in / Sign up</button></div>
   </header>
 
   <section class="hero">
@@ -945,8 +1005,76 @@ body {
   </footer>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const $ = (id) => document.getElementById(id);
+
+// Supabase public browser configuration. Never put a service_role/secret key here.
+const SUPABASE_URL = "https://rwrzmmxwlyxbecgytsgf.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_hXMKATo5L8BKSM10xFmiMg_Cx9SI20n";
+let supabaseClient = null;
+try {
+  if (window.supabase && window.supabase.createClient) {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+  }
+} catch (error) { console.error("Supabase initialization failed", error); }
+
+let authMode = "login";
+function authMessage(message, type = "loading") {
+  const el = $("authStatus");
+  el.className = "status show " + type;
+  el.textContent = message;
+}
+function openAuth() {
+  $("authBackdrop").hidden = false;
+  $("authStatus").className = "status";
+  $("authEmail").focus();
+}
+function closeAuth() { $("authBackdrop").hidden = true; }
+function setAuthMode(mode) {
+  authMode = mode;
+  $("loginTab").classList.toggle("active", mode === "login");
+  $("signupTab").classList.toggle("active", mode === "signup");
+  $("authTitle").textContent = mode === "login" ? "Welcome back" : "Create your account";
+  $("authCopy").textContent = mode === "login" ? "Log in with your email and password." : "Sign up with your email to get started.";
+  $("authSubmit").textContent = mode === "login" ? "Log in" : "Create account";
+  $("authPassword").autocomplete = mode === "login" ? "current-password" : "new-password";
+  $("forgotPassword").hidden = mode !== "login";
+  $("authStatus").className = "status";
+}
+function renderAuthSession(session) {
+  const btn = $("accountBtn");
+  const userBox = $("authUser");
+  if (session && session.user) {
+    btn.textContent = "My account";
+    userBox.hidden = false;
+    userBox.replaceChildren();
+    const email = document.createElement("div");
+    email.textContent = "Signed in as " + (session.user.email || "your account");
+    const logout = document.createElement("button");
+    logout.type = "button";
+    logout.textContent = "Log out";
+    logout.addEventListener("click", async () => {
+      const { error } = await supabaseClient.auth.signOut();
+      if (error) authMessage(error.message, "error");
+      else { authMessage("You have logged out.", "good"); renderAuthSession(null); }
+    });
+    userBox.append(email, logout);
+    $("authTitle").textContent = "Your account";
+    $("authCopy").textContent = "You are signed in to BattleCore.";
+    $("authForm").hidden = true;
+    $("authTabs").hidden = true;
+    $("authNote").hidden = true;
+  } else {
+    btn.textContent = "Log in / Sign up";
+    userBox.hidden = true;
+    $("authForm").hidden = false;
+    $("authTabs").hidden = false;
+    $("authNote").hidden = false;
+    setAuthMode("login");
+  }
+}
+
 
 $("year").textContent = new Date().getFullYear();
 
@@ -1149,6 +1277,78 @@ likeForm.addEventListener("submit", async (event) => {
     checkHealth();
   }
 });
+
+
+/* SUPABASE LOGIN / SIGNUP */
+$("accountBtn").addEventListener("click", async () => {
+  if (!supabaseClient) {
+    openAuth();
+    authMessage("Could not load Supabase. Check your internet connection and refresh the page.", "error");
+    return;
+  }
+  const { data } = await supabaseClient.auth.getSession();
+  if (data.session) {
+    setAuthMode("login");
+    renderAuthSession(data.session);
+    openAuth();
+  } else {
+    renderAuthSession(null);
+    openAuth();
+  }
+});
+$("authClose").addEventListener("click", closeAuth);
+$("authBackdrop").addEventListener("click", (event) => {
+  if (event.target === $("authBackdrop")) closeAuth();
+});
+document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeAuth(); });
+$("loginTab").addEventListener("click", () => setAuthMode("login"));
+$("signupTab").addEventListener("click", () => setAuthMode("signup"));
+$("authForm").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (!supabaseClient) {
+    authMessage("Supabase library could not load. Check your connection and refresh.", "error");
+    return;
+  }
+  const email = $("authEmail").value.trim();
+  const password = $("authPassword").value;
+  const submit = $("authSubmit");
+  submit.disabled = true;
+  try {
+    if (authMode === "signup") {
+      const { data, error } = await supabaseClient.auth.signUp({ email, password });
+      if (error) throw error;
+      if (data.session) {
+        renderAuthSession(data.session);
+        authMessage("Account created and you are signed in.", "good");
+      } else {
+        authMessage("Account created. Check your email for the confirmation link, then log in.", "good");
+      }
+    } else {
+      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      renderAuthSession(data.session);
+      authMessage("Login successful.", "good");
+    }
+  } catch (error) {
+    authMessage(error.message || "Authentication failed. Please try again.", "error");
+  } finally { submit.disabled = false; }
+});
+$("forgotPassword").addEventListener("click", async () => {
+  if (!supabaseClient) { authMessage("Supabase library is not available.", "error"); return; }
+  const email = $("authEmail").value.trim();
+  if (!email) { authMessage("Enter your email first, then tap Forgot password.", "error"); return; }
+  const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin
+  });
+  if (error) authMessage(error.message, "error");
+  else authMessage("If this email has an account, a password-reset link will be sent.", "good");
+});
+if (supabaseClient) {
+  supabaseClient.auth.getSession().then(({ data }) => {
+    if (data.session) renderAuthSession(data.session);
+  });
+  supabaseClient.auth.onAuthStateChange((_event, session) => renderAuthSession(session));
+}
 
 /* LIGHTWEIGHT ANIMATED PARTICLES */
 (() => {
