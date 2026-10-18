@@ -45,3 +45,20 @@ The AI backend code and homepage forms are implemented, but they are **not confi
 
 ## Development notes
 This repository was originally used for a Free Fire project and is being converted in stages. Some legacy files may remain until they can be safely reviewed and removed. Never commit API keys, credentials, or environment files. Validate user input and uploaded files before processing.
+
+
+## API configuration and safety
+
+- Set `OPENAI_API_KEY` only in the hosting provider's server-side environment variables. Never put it in `index.html`, browser JavaScript, or a public repository file.
+- Optionally set `OPENAI_MODEL` to a model available to the configured API account; the current default is `gpt-4.1-mini`.
+- The study and PDF endpoints validate request shapes and input sizes, and provider requests have a timeout.
+- The current public study endpoints do not provide user accounts, persistent history, or a durable cross-instance rate limiter. Do not treat the app as production-ready for unrestricted public traffic until abuse controls and usage limits are implemented.
+- After changing environment variables, redeploy the project and verify `/api/health`, `/api/status`, a text study request, and a selectable-text PDF.
+
+## Deployment verification checklist
+
+1. Open `/api/health` and confirm `success: true`.
+2. Open `/api/status` and confirm `data.aiConfigured: true` after configuring the key.
+3. Submit a short study note and verify the response.
+4. Upload a small text-based PDF and verify the generated study guide.
+5. Check hosting logs for configuration or provider errors without printing secrets.
