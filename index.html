@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#070914">
+<meta name="theme-color" content="#080b18">
+<meta name="color-scheme" content="dark">
 <meta name="description" content="BattleCore provides Free Fire player tools and player information.">
 <title>BattleCore — Free Fire Player Tools</title>
 
@@ -510,6 +511,140 @@ body {
     transition-duration: .01ms !important;
   }
 }
+
+/* BATTLECORE PREMIUM UI REFRESH */
+:root {
+  --bg: #080b18;
+  --panel: rgba(15, 21, 42, .88);
+  --panel2: rgba(20, 29, 55, .94);
+  --blue: #53e3ff;
+  --purple: #9a7bff;
+  --lime: #c7ff63;
+  --text: #f4f7ff;
+  --muted: #a8b4d1;
+  --line: rgba(130, 157, 220, .22);
+}
+.wrap { width: min(1160px, 92%); }
+.nav {
+  min-height: 84px;
+  padding: 17px 0;
+  border-bottom-color: rgba(148, 170, 225, .16);
+}
+.brand { gap: 13px; font-size: 14px; letter-spacing: 1.6px; }
+.logo {
+  position: relative;
+  isolation: isolate;
+  width: 48px; height: 48px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.32);
+  border-radius: 15px;
+  background: linear-gradient(145deg, #67e9ff 0%, #7d8dff 56%, #b2a0ff 100%);
+  box-shadow: 0 8px 28px rgba(66,217,255,.2), inset 0 1px rgba(255,255,255,.65);
+  font-size: 14px;
+}
+.logo span { position: relative; z-index: 1; font-weight: 1000; letter-spacing: -1px; }
+.logo i {
+  position: absolute; width: 33px; height: 33px; right: -13px; bottom: -16px;
+  border: 2px solid rgba(7,16,29,.28); border-radius: 10px; transform: rotate(35deg);
+}
+.brand-name { display: flex; flex-direction: column; line-height: 1.1; gap: 4px; }
+.brand-name > span { color: var(--blue); }
+.brand-name small { color: #8391b5; font-size: 8px; font-weight: 800; letter-spacing: 2.2px; }
+.nav-right { display: flex; align-items: center; gap: 18px; }
+.live-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 11px; border: 1px solid rgba(199,255,99,.22);
+  border-radius: 999px; color: #d9f8a7; background: rgba(199,255,99,.055);
+  font-size: 9px; font-weight: 850; letter-spacing: 1.1px; white-space: nowrap;
+}
+.live-pill i { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 12px var(--lime); }
+.nav-link { color: #dce6ff; text-decoration: none; font-size: 12px; font-weight: 750; }
+.nav-link span { color: var(--blue); margin-left: 5px; }
+.hero { padding: 76px 0 45px; }
+.eyebrow { display: flex; justify-content: center; align-items: center; gap: 12px; color: #9eeeff; font-size: 10px; letter-spacing: 3.4px; }
+.eyebrow-line { width: 25px; height: 1px; background: linear-gradient(90deg, transparent, var(--blue)); }
+.eyebrow-line:last-child { transform: rotate(180deg); }
+.hero h1 { margin: 20px 0 18px; font-size: clamp(42px, 7.5vw, 78px); font-weight: 950; line-height: .99; letter-spacing: -3px; text-shadow: 0 12px 55px rgba(0,0,0,.35); }
+.hero h1 span { background-image: linear-gradient(95deg, #55e7ff 5%, #9b9cff 54%, #c9ff71 100%); }
+.hero-copy { max-width: 590px; font-size: clamp(14px, 2vw, 17px); line-height: 1.8; }
+.hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 11px; margin-top: 25px; }
+.hero-cta, .hero-secondary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  min-height: 45px; padding: 0 18px; border-radius: 12px; text-decoration: none;
+  font-size: 12px; font-weight: 850; transition: transform .2s, border-color .2s, background .2s;
+}
+.hero-cta { color: #07101d; background: linear-gradient(105deg, var(--blue), #a9b0ff); box-shadow: 0 8px 26px rgba(83,227,255,.16); }
+.hero-secondary { color: #e6edff; border: 1px solid var(--line); background: rgba(255,255,255,.035); }
+.hero-cta:hover, .hero-secondary:hover { transform: translateY(-2px); }
+.hero-line { margin-top: 34px; width: 150px; opacity: .75; }
+.layout { gap: 22px; padding-bottom: 36px; }
+.card {
+  padding: 27px;
+  border-color: rgba(132,157,220,.23);
+  border-radius: 23px;
+  background: linear-gradient(145deg, rgba(18,25,49,.94), rgba(9,13,28,.94));
+  box-shadow: 0 24px 75px rgba(0,0,0,.25), inset 0 1px rgba(255,255,255,.035);
+}
+.card h2 { font-size: 22px; font-weight: 850; letter-spacing: -.55px; }
+.sub { margin-bottom: 25px; line-height: 1.7; }
+.section-icon {
+  width: 42px; height: 42px; margin-bottom: 16px; border-radius: 14px;
+  color: var(--blue); border-color: rgba(83,227,255,.24);
+  background: linear-gradient(145deg, rgba(83,227,255,.12), rgba(154,123,255,.1));
+}
+.field { margin: 19px 0; }
+.field input, .field select {
+  min-height: 52px; border-color: rgba(131,153,204,.31); border-radius: 13px;
+  background: rgba(5,9,22,.72);
+}
+.field input:focus, .field select:focus { box-shadow: 0 0 0 4px rgba(83,227,255,.09); }
+.btn {
+  min-height: 52px; border-radius: 13px; font-size: 13px; letter-spacing: .1px;
+  box-shadow: 0 9px 28px rgba(83,227,255,.13);
+}
+.btn-green { color: #07130a; box-shadow: 0 9px 28px rgba(199,255,99,.1); }
+.sidebox { padding: 17px; border-radius: 15px; border-color: rgba(132,157,220,.18); }
+.sidebox strong { font-size: 13px; letter-spacing: .1px; }
+.sidebox p { line-height: 1.7; }
+.statusrow { padding: 11px 12px; border: 1px solid rgba(132,157,220,.17); border-radius: 12px; background: rgba(255,255,255,.025); }
+.foot { align-items: center; border-top-color: rgba(148,170,225,.16); line-height: 1.8; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+@media (max-width: 760px) {
+  .nav { min-height: 74px; padding: 13px 0; }
+  .nav-right { gap: 10px; }
+  .nav-link { font-size: 11px; }
+  .live-pill { padding: 7px 9px; font-size: 8px; letter-spacing: .6px; }
+  .hero { padding: 55px 0 32px; }
+  .hero h1 { letter-spacing: -2px; }
+  .card { padding: 22px; }
+  .layout { gap: 16px; }
+}
+@media (max-width: 430px) {
+  .wrap { width: min(100% - 28px, 1160px); }
+  .brand { gap: 9px; letter-spacing: 1px; }
+  .logo { width: 42px; height: 42px; border-radius: 13px; }
+  .brand-name { font-size: 12px; }
+  .brand-name small { font-size: 7px; letter-spacing: 1.6px; }
+  .nav-right { gap: 0; }
+  .live-pill { display: none; }
+  .nav-link { font-size: 10px; white-space: nowrap; }
+  .hero { padding-top: 44px; }
+  .eyebrow { font-size: 8px; letter-spacing: 2px; gap: 7px; }
+  .eyebrow-line { width: 16px; }
+  .hero h1 { font-size: clamp(39px, 12vw, 52px); letter-spacing: -1.7px; }
+  .hero-copy { font-size: 13px; padding: 0 5px; }
+  .hero-actions { gap: 8px; }
+  .hero-cta, .hero-secondary { min-height: 43px; padding: 0 13px; font-size: 11px; }
+  .card { padding: 19px; border-radius: 19px; }
+  .card h2 { font-size: 20px; }
+  .sub { font-size: 12px; margin-bottom: 20px; }
+  .foot { flex-direction: column; align-items: flex-start; gap: 5px; padding-top: 18px; }
+}
+@media (max-width: 350px) {
+  .nav-link { display: none; }
+  .hero h1 { font-size: 36px; }
+}
+
 </style>
 </head>
 
@@ -521,16 +656,17 @@ body {
 <div class="wrap">
   <header class="nav">
     <div class="brand">
-      <div class="logo">FF</div>
-      <span> BATTLECORE</span>
+      <div class="logo" aria-hidden="true"><span>BC</span><i></i></div>
+      <span class="brand-name">BATTLE<span>CORE</span><small>PLAYER TOOLS</small></span>
     </div>
-    <div class="badge">GAMING PORTAL</div>
+    <div class="nav-right"><span class="live-pill"><i></i> PLAYER TOOLS</span><a class="nav-link" href="#playerForm">Explore tools <span aria-hidden="true">↘</span></a></div>
   </header>
 
   <section class="hero">
-    <div class="eyebrow">Free Fire · Player Utility</div>
-    <h1>ENTER THE<br><span>BATTLE ZONE.</span></h1>
-    <p>Player information and community tools, brought together in one sleek gaming experience.</p>
+    <div class="eyebrow"><span class="eyebrow-line"></span> THE PLAYER TOOLKIT <span class="eyebrow-line"></span></div>
+    <h1>YOUR GAME.<br><span>YOUR EDGE.</span></h1>
+    <p class="hero-copy">A streamlined hub for Free Fire player lookup and community tools. Fast to use, easy to navigate, built for mobile.</p>
+    <div class="hero-actions"><a class="hero-cta" href="#playerForm">Find a player <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#likeForm">Send likes <span aria-hidden="true">↓</span></a></div>
     <div class="hero-line"></div>
   </section>
 
@@ -658,20 +794,20 @@ body {
       </div>
 
       <div class="sidebox">
-        <strong>🎮 Community project</strong>
-        <p>FF Like Hub is an independent fan-made project and is not affiliated with or endorsed by Garena.</p>
+        <strong>◎ Independent tools</strong>
+        <p>BattleCore is an independent community utility and is not affiliated with or endorsed by Garena.</p>
       </div>
 
       <div class="sidebox">
-        <strong>🌌 Gaming atmosphere</strong>
-        <p>Animated lights and floating particles create a cinematic background while keeping the interface readable.</p>
+        <strong>✦ Built for quick access</strong>
+        <p>Clear controls, readable results and a responsive layout across mobile and desktop screens.</p>
       </div>
     </aside>
   </main>
 
   <footer class="foot">
     <span>© <span id="year"></span> BattleCore</span>
-    <span>Community gaming tools for players · Not affiliated with Garena</span>
+    <span>Independent community tools · Not affiliated with or endorsed by Garena</span>
     <a href="/api/health" target="_blank" rel="noopener">API health</a>
   </footer>
 </div>
