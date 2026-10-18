@@ -5,5 +5,8 @@
   "type": "module",
   "engines": {
     "node": ">=20"
+  },
+  "dependencies": {
+    "pdf-parse": "^1.1.1"
   }
 }
