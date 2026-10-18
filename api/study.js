@@ -49,8 +49,12 @@ export default async function handler(req, res) {
     );
   }
 
-  const body = req.body || {};
-  const task = String(body.task || "summarize").toLowerCase();
+  const body = req.body;
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return sendError(res, 400, "Send a valid JSON object with task and text.", "INVALID_REQUEST_BODY");
+  }
+
+  const task = typeof body.task === "string" ? body.task.trim().toLowerCase() : "summarize";
   const text = typeof body.text === "string" ? body.text.trim() : "";
 
   if (!TASKS[task]) {
