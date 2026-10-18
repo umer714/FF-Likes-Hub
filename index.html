@@ -575,6 +575,15 @@ body {
   font-size: 9px; font-weight: 850; letter-spacing: 1.1px; white-space: nowrap;
 }
 .live-pill i { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 12px var(--lime); }
+.menu-wrap { position: relative; z-index: 20; }
+.menu-dots { display:grid; place-items:center; width:42px; height:42px; border:1px solid var(--line); border-radius:13px; background:rgba(255,255,255,.045); color:var(--text); font-size:28px; line-height:1; cursor:pointer; }
+.menu-dots:hover, .menu-dots[aria-expanded="true"] { border-color:var(--blue); background:rgba(72,232,255,.1); }
+.site-menu { position:absolute; top:calc(100% + 10px); right:0; width:min(270px, calc(100vw - 36px)); padding:9px; border:1px solid rgba(105,174,255,.3); border-radius:16px; background:rgba(8,13,29,.98); box-shadow:0 20px 55px rgba(0,0,0,.5); backdrop-filter:blur(18px); }
+.menu-item { display:flex; align-items:center; gap:12px; width:100%; min-height:43px; padding:10px 12px; border:0; border-radius:10px; background:transparent; color:#e9f1ff; text-align:left; text-decoration:none; font:600 13px/1.35 Inter,system-ui,sans-serif; cursor:pointer; }
+.menu-item > :last-child { min-width:0; }
+.menu-item:hover { background:rgba(72,232,255,.1); color:var(--blue); }
+.menu-divider { height:1px; margin:6px 4px; background:rgba(148,170,225,.16); }
+.menu-account { font-family:inherit; }
 .nav-link { color: #dce6ff; text-decoration: none; font-size: 12px; font-weight: 750; }
 .nav-link span { color: var(--blue); margin-left: 5px; }
 .hero { padding: 76px 0 45px; }
@@ -629,6 +638,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 @media (max-width: 760px) {
   .nav { min-height: 74px; padding: 13px 0; }
   .nav-right { gap: 10px; }
+  .menu-dots { width:39px; height:39px; }
   .nav-link { font-size: 11px; }
   .live-pill { padding: 7px 9px; font-size: 8px; letter-spacing: .6px; }
   .hero { padding: 55px 0 32px; }
@@ -868,7 +878,17 @@ body {
       <div class="logo" aria-hidden="true"><span>BC</span><i></i></div>
       <span class="brand-name">BATTLE<span>CORE</span><small>PLAYER TOOLS</small></span>
     </div>
-    <div class="nav-right"><span class="live-pill"><i></i> PLAYER TOOLS</span><a class="nav-link" href="#playerForm">Explore tools <span aria-hidden="true">↘</span></a><button class="account-btn" id="accountBtn" type="button">Log in / Sign up</button></div>
+    <div class="nav-right"><span class="live-pill"><i></i> PLAYER TOOLS</span><div class="menu-wrap"><button class="menu-dots" id="menuDots" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteMenu">⋮</button><nav class="site-menu" id="siteMenu" aria-label="Main menu" hidden>
+      <a href="#playerForm" class="menu-item">▦ <span>Dashboard</span></a>
+      <div class="menu-divider"></div>
+      <a href="/about.html" class="menu-item">ⓘ <span>About Us</span></a>
+      <a href="/contact.html" class="menu-item">✉ <span>Contact Us</span></a>
+      <a href="/privacy.html" class="menu-item">♧ <span>Privacy Policy</span></a>
+      <a href="/terms.html" class="menu-item">≡ <span>Terms &amp; Conditions</span></a>
+      <a href="/disclaimer.html" class="menu-item">⚑ <span>Disclaimer</span></a>
+      <div class="menu-divider"></div>
+      <button class="menu-item menu-account" id="menuAccount" type="button">♙ <span>Login / Account Details</span></button>
+    </nav></div><button class="account-btn" id="accountBtn" type="button">Log in / Sign up</button></div>
   </header>
 
   <section class="hero">
@@ -1096,6 +1116,29 @@ function renderAuthSession(session) {
 
 
 $("year").textContent = new Date().getFullYear();
+
+// Three-dot navigation menu
+const menuDots = $("menuDots");
+const siteMenu = $("siteMenu");
+function closeSiteMenu() {
+  siteMenu.hidden = true;
+  menuDots.setAttribute("aria-expanded", "false");
+}
+menuDots.addEventListener("click", () => {
+  const willOpen = siteMenu.hidden;
+  siteMenu.hidden = !willOpen;
+  menuDots.setAttribute("aria-expanded", String(willOpen));
+});
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".menu-wrap")) closeSiteMenu();
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeSiteMenu();
+});
+$("menuAccount").addEventListener("click", () => {
+  closeSiteMenu();
+  $("accountBtn").click();
+});
 
 function showStatus(element, message, type) {
   element.className = "status show " + type;
