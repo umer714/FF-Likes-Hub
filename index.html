@@ -21,6 +21,8 @@ section{padding:55px 0}.sectionhead{text-align:center;max-width:680px;margin:0 a
 footer{border-top:1px solid var(--line);padding:24px 0 32px;color:#8390ad;font-size:11px}.footrow{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.footlinks{display:flex;gap:16px;flex-wrap:wrap}.footlinks a:hover{color:var(--cyan)}
 @media(max-width:760px){nav{height:70px}.navlinks{gap:13px}.navlinks>a:not(.navbtn){display:none}.hero{padding:60px 0 35px}h1{letter-spacing:-2px}.previewgrid{grid-template-columns:1fr}.features,.how{grid-template-columns:1fr 1fr}section{padding:40px 0}.cta{padding:26px 19px}}
 @media(max-width:480px){.wrap{width:calc(100% - 28px)}.brand{font-size:18px}.mark{width:38px;height:38px}.navbtn{padding:10px 12px;font-size:11px}.hero p{font-size:14px}.features,.how{grid-template-columns:1fr}.preview{padding:9px}.mockcard{padding:14px}.sectionhead h2{letter-spacing:-.8px}}
+
+.studytool{padding:22px;border:1px solid #6ce9f538;border-radius:20px;background:linear-gradient(145deg,#111a30f2,#0c1123f2);text-align:left;box-shadow:0 20px 65px #0003}.studyform{display:grid;gap:13px}.studyform label{display:block;font-size:12px;font-weight:700;color:#dce7ff;margin-bottom:6px}.studyform select,.studyform textarea{width:100%;font:inherit;color:var(--text);background:#080e20;border:1px solid #ffffff25;border-radius:11px;padding:12px;outline:none}.studyform select:focus,.studyform textarea:focus{border-color:var(--cyan)}.studyform textarea{min-height:160px;resize:vertical}.toolrow{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end}.toolhint{font-size:11px;color:#8996b3}.studyform button:disabled{opacity:.6;cursor:wait}.studyresult{display:none;margin-top:18px;padding:16px;border:1px solid #ffffff20;border-radius:13px;background:#080e20;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.8}.studyresult.show{display:block}.studyresult.error{border-color:#ff8f9a66;color:#ffd1d5}.studyresult h3{margin:0 0 8px;font-size:15px}.studyresult p{margin:0}.statusline{font-size:11px;color:#8996b3;margin-top:12px}
 </style>
 </head>
 <body>
@@ -43,6 +45,10 @@ footer{border-top:1px solid var(--line);padding:24px 0 32px;color:#8390ad;font-s
 <div class="mockcard"><span class="mocktag">✧ Your learning toolkit</span><div class="minirow"><span class="miniicon">▤</span><span><strong>Summaries</strong><br>Key ideas at a glance</span></div><div class="minirow"><span class="miniicon">✓</span><span><strong>Practice quizzes</strong><br>Check what you know</span></div><div class="minirow"><span class="miniicon">▣</span><span><strong>Flashcards</strong><br>Review one concept at a time</span></div></div>
 </div></div>
 </header>
+<section id="ai-study">
+<div class="sectionhead"><span class="eyebrow">Try the study workspace</span><h2>Turn your notes into a study aid.</h2><p>Paste a short piece of study material, choose a tool, and send it to Mindora's backend.</p></div>
+<div class="studytool"><form class="studyform" id="studyForm"><div class="toolrow"><div><label for="studyTask">Choose a study tool</label><select id="studyTask" name="task"><option value="summarize">Summarize notes</option><option value="explain">Explain simply</option><option value="quiz">Generate 5 MCQs</option><option value="flashcards">Create flashcards</option></select></div><button class="primary" id="studySubmit" type="submit">Generate →</button></div><div><label for="studyText">Your study notes</label><textarea id="studyText" name="text" maxlength="12000" placeholder="Paste your notes or a topic here (up to 12,000 characters)." required></textarea><div class="toolhint"><span id="charCount">0</span>/12,000 characters. Do not paste passwords or private information.</div></div></form><div id="studyStatus" class="statusline" role="status">AI tools require a valid server-side API key and a successful deployment.</div><div id="studyResult" class="studyresult" aria-live="polite"></div></div>
+</section>
 <section id="features">
 <div class="sectionhead"><span class="eyebrow">A smarter way to study</span><h2>Your study toolkit, in one place.</h2><p>Tools designed to help you go from “I don’t get it” to “I’ve got this.”</p></div>
 <div class="features">
@@ -62,6 +68,49 @@ footer{border-top:1px solid var(--line);padding:24px 0 32px;color:#8390ad;font-s
 </main>
 <footer><div class="footrow"><a class="brand" href="#"><span class="mark">M</span><span>mind<b>ora</b></span></a><span>© <span id="year"></span> Mindora. Learn Smarter. Go Further.</span><div class="footlinks"><a href="#features">Features</a><a href="#how">How it works</a><a href="#get-started">Get started</a></div></div></footer>
 </div>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+const studyForm=document.getElementById('studyForm');
+const studyText=document.getElementById('studyText');
+const charCount=document.getElementById('charCount');
+const studySubmit=document.getElementById('studySubmit');
+const studyStatus=document.getElementById('studyStatus');
+const studyResult=document.getElementById('studyResult');
+studyText.addEventListener('input',()=>{charCount.textContent=studyText.value.length;});
+studyForm.addEventListener('submit',async(event)=>{
+  event.preventDefault();
+  const text=studyText.value.trim();
+  const task=document.getElementById('studyTask').value;
+  studyResult.className='studyresult show';
+  studyResult.textContent='';
+  if(!text){studyResult.classList.add('error');studyResult.textContent='Please paste your study notes first.';return;}
+  studySubmit.disabled=true;
+  studySubmit.textContent='Working…';
+  studyStatus.textContent='Sending your request securely to Mindora…';
+  studyResult.textContent='Preparing your study result…';
+  try{
+    const response=await fetch('/api/study',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({task,text})});
+    const payload=await response.json().catch(()=>({}));
+    if(!response.ok||!payload.success){
+      const message=payload&&payload.error&&payload.error.message?payload.error.message:'Mindora could not complete this request.';
+      throw new Error(message);
+    }
+    const data=payload.data||{};
+    studyResult.textContent=data.result||'No result was returned.';
+    studyStatus.textContent='Done — review the result below. AI responses can make mistakes, so verify important facts.';
+  }catch(error){
+    studyResult.classList.add('error');
+    studyResult.textContent=error.message||'Something went wrong. Please try again.';
+    studyStatus.textContent='Request not completed. The deployment and AI configuration may need checking.';
+  }finally{
+    studySubmit.disabled=false;
+    studySubmit.textContent='Generate →';
+  }
+});
+fetch('/api/status').then(r=>r.json()).then(payload=>{
+  const data=payload&&payload.data;
+  if(data&&data.aiConfigured){studyStatus.textContent='AI key detected in backend configuration. Live requests still depend on a successful deployment.';}
+}).catch(()=>{});
+</script>
 </body>
 </html>
