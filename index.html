@@ -603,6 +603,9 @@ body {
 }
 .hero-cta { color: #07101d; background: linear-gradient(105deg, var(--blue), #a9b0ff); box-shadow: 0 8px 26px rgba(83,227,255,.16); }
 .hero-secondary { color: #e6edff; border: 1px solid var(--line); background: rgba(255,255,255,.035); }
+.share-cta { font-family: inherit; cursor: pointer; }
+.share-feedback { margin: 12px auto 0; color: #bdefff; font-size: 12px; }
+@media (max-width: 430px) { .hero-actions .share-cta { flex-basis: 100%; max-width: 230px; } }
 .hero-cta:hover, .hero-secondary:hover { transform: translateY(-2px); }
 .hero-line { margin-top: 34px; width: 150px; opacity: .75; }
 .layout { gap: 22px; padding-bottom: 36px; }
@@ -903,7 +906,7 @@ body {
     <div class="eyebrow"><span class="eyebrow-line"></span> THE PLAYER TOOLKIT <span class="eyebrow-line"></span></div>
     <h1>YOUR GAME.<br><span>YOUR EDGE.</span></h1>
     <p class="hero-copy">A streamlined hub for Free Fire player lookup and community tools. Fast to use, easy to navigate, built for mobile.</p>
-    <div class="hero-actions"><a class="hero-cta" href="#playerForm">Find a player <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#likeForm">Send likes <span aria-hidden="true">↓</span></a></div>
+    <div class="hero-actions"><a class="hero-cta" href="#playerForm">Find a player <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#likeForm">Send likes <span aria-hidden="true">↓</span></a><button class="hero-secondary share-cta" id="shareSiteBtn" type="button">Share BattleCore <span aria-hidden="true">↗</span></button></div><p class="share-feedback" id="shareFeedback" role="status" aria-live="polite" hidden></p>
     <div class="hero-line"></div>
   </section>
 
@@ -1124,6 +1127,35 @@ function renderAuthSession(session) {
 
 
 $("year").textContent = new Date().getFullYear();
+
+// Share-ready website promotion: native share on mobile, clipboard fallback elsewhere.
+const shareSiteBtn = $("shareSiteBtn");
+const shareFeedback = $("shareFeedback");
+shareSiteBtn.addEventListener("click", async () => {
+  const shareData = {
+    title: "BattleCore — Free Fire Player Tools",
+    text: "Explore BattleCore, an independent Free Fire community tools website.",
+    url: window.location.origin + "/"
+  };
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+      shareFeedback.hidden = true;
+    } else if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(shareData.url);
+      shareFeedback.textContent = "Website link copied. Share it with your gaming friends!";
+      shareFeedback.hidden = false;
+    } else {
+      shareFeedback.textContent = "Share this website: " + shareData.url;
+      shareFeedback.hidden = false;
+    }
+  } catch (error) {
+    if (error && error.name !== "AbortError") {
+      shareFeedback.textContent = "Share this website: " + shareData.url;
+      shareFeedback.hidden = false;
+    }
+  }
+});
 
 // Three-dot navigation menu
 const menuDots = $("menuDots");
