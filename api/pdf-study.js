@@ -17,12 +17,20 @@ export default async function handler(req, res) {
     return sendError(res, 503, "AI service is not configured yet. Add OPENAI_API_KEY in Vercel Project Settings > Environment Variables.", "AI_NOT_CONFIGURED");
   }
 
-  const body = req.body || {};
+  const body = req.body;
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return sendError(res, 400, "Send a valid JSON object containing a PDF filename and base64 data.", "INVALID_REQUEST_BODY");
+  }
+
   const filename = typeof body.filename === "string" ? body.filename.slice(0, 160) : "study.pdf";
   const base64 = typeof body.base64 === "string" ? body.base64 : "";
 
   if (!base64 || base64.length > Math.ceil(MAX_PDF_BYTES * 4 / 3) + 16) {
     return sendError(res, 413, "Choose a PDF smaller than 1.5 MB.", "PDF_TOO_LARGE_OR_MISSING");
+  }
+  // Buffer.from(base64, "base64") is permissive, so reject malformed input first.
+  if (!/^[A-Za-z0-9+/]*={0,2}$/.test(base64) || base64.length % 4 === 1) {
+    return sendError(res, 400, "The uploaded file data is not valid base64.", "INVALID_FILE");
   }
   if (!filename.toLowerCase().endsWith(".pdf")) {
     return sendError(res, 400, "Please choose a PDF file.", "INVALID_FILE_TYPE");
