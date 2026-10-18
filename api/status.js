@@ -20,7 +20,7 @@ export default function handler(req, res) {
       simpleExplanation: configured ? "available" : "requires_api_key",
       quizGenerator: configured ? "available" : "requires_api_key",
       flashcards: configured ? "available" : "requires_api_key",
-      pdfAssistant: "planned"
+      pdfAssistant: configured ? "available" : "requires_api_key"
     }
   });
 }
