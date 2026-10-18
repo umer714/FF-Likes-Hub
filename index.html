@@ -902,7 +902,7 @@ body {
     <div class="eyebrow"><span class="eyebrow-line"></span> THE PLAYER TOOLKIT <span class="eyebrow-line"></span></div>
     <h1>YOUR GAME.<br><span>YOUR EDGE.</span></h1>
     <p class="hero-copy">A streamlined hub for Free Fire player lookup and community tools. Fast to use, easy to navigate, built for mobile.</p>
-    <div class="hero-actions"><a class="hero-cta" href="#playerForm">Find a player <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#likeForm">Send likes <span aria-hidden="true">↓</span></a></div>
+    <div class="hero-actions"><a class="hero-cta" href="#playerForm">Find a player <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#likeForm">Send likes <span aria-hidden="true">↓</span></a><button class="hero-secondary" id="installAppBtn" type="button" style="font:inherit;cursor:pointer">⬇ Install App</button></div>
     <div class="hero-line"></div>
   </section>
 
@@ -1495,6 +1495,36 @@ if ("serviceWorker" in navigator && location.protocol === "https:") {
     navigator.serviceWorker.register("/sw.js").catch((error) => console.warn("PWA service worker registration failed:", error));
   });
 }
+</script>
+<script>
+(() => {
+  let installPrompt = null;
+  const button = document.getElementById("installAppBtn");
+  if (!button) return;
+  button.addEventListener("click", async () => {
+    if (window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true) {
+      alert("BattleCore is already installed on this device.");
+      return;
+    }
+    if (installPrompt) {
+      installPrompt.prompt();
+      await installPrompt.userChoice;
+      installPrompt = null;
+      button.textContent = "⬇ Install App";
+      return;
+    }
+    alert("To install BattleCore: open this website in Chrome, tap the ⋮ menu, then choose 'Install app' or 'Add to Home screen'. If the option is missing, wait for the site update and open the website directly in Chrome.");
+  });
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    installPrompt = event;
+    button.textContent = "⬇ Install BattleCore";
+  });
+  window.addEventListener("appinstalled", () => {
+    installPrompt = null;
+    button.textContent = "✓ App Installed";
+  });
+})();
 </script>
 </body>
 </html>
