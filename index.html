@@ -576,6 +576,8 @@ body {
 }
 .live-pill i { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 12px var(--lime); }
 .menu-wrap { position: relative; z-index: 20; }
+.site-menu { position:absolute; top:calc(100% + 10px); right:0; z-index:1000; }
+.account-btn[hidden] { display:none !important; }
 .menu-dots { display:grid; place-items:center; width:42px; height:42px; border:1px solid var(--line); border-radius:13px; background:rgba(255,255,255,.045); color:var(--text); font-size:28px; line-height:1; cursor:pointer; }
 .menu-dots:hover, .menu-dots[aria-expanded="true"] { border-color:var(--blue); background:rgba(72,232,255,.1); }
 .site-menu { position:absolute; top:calc(100% + 10px); right:0; width:min(270px, calc(100vw - 36px)); padding:9px; border:1px solid rgba(105,174,255,.3); border-radius:16px; background:rgba(8,13,29,.98); box-shadow:0 20px 55px rgba(0,0,0,.5); backdrop-filter:blur(18px); }
@@ -887,8 +889,8 @@ body {
       <a href="/terms.html" class="menu-item">≡ <span>Terms &amp; Conditions</span></a>
       <a href="/disclaimer.html" class="menu-item">⚑ <span>Disclaimer</span></a>
       <div class="menu-divider"></div>
-      <button class="menu-item menu-account" id="menuAccount" type="button">♙ <span>Login / Account Details</span></button>
-    </nav></div><button class="account-btn" id="accountBtn" type="button">Log in / Sign up</button></div>
+      <button class="menu-item menu-account" id="menuAccount" type="button">♙ <span>My Account</span></button>
+    </nav></div><button class="account-btn" id="accountBtn" type="button" hidden>Log in / Sign up</button></div>
   </header>
 
   <section class="hero">
