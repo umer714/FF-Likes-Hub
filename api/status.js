@@ -9,15 +9,18 @@ export default function handler(req, res) {
     return sendError(res, 405, "Method not allowed.", "METHOD_NOT_ALLOWED");
   }
 
+  const configured = Boolean(process.env.OPENAI_API_KEY);
+
   return sendSuccess(res, {
     service: "Mindora",
     status: "ready",
+    aiConfigured: configured,
     features: {
-      notesSummarizer: "coming_soon",
-      quizGenerator: "coming_soon",
-      flashcards: "coming_soon",
-      pdfAssistant: "coming_soon"
-    },
-    aiConfigured: Boolean(process.env.OPENAI_API_KEY)
+      notesSummarizer: configured ? "available" : "requires_api_key",
+      simpleExplanation: configured ? "available" : "requires_api_key",
+      quizGenerator: configured ? "available" : "requires_api_key",
+      flashcards: configured ? "available" : "requires_api_key",
+      pdfAssistant: "planned"
+    }
   });
 }
