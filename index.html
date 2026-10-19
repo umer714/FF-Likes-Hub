@@ -162,6 +162,7 @@ pdfForm.addEventListener('submit',async(event)=>{
     if(!response.ok||!payload.success)throw new Error(payload&&payload.error&&payload.error.message?payload.error.message:'Mindora could not process this PDF.');
     const data=payload.data||{};
     pdfResult.textContent='File: '+(data.filename||file.name)+'\nPages: '+(data.pages||'Unknown')+'\nExtracted characters: '+(data.extractedCharacters||0)+(data.truncated?'\nNote: Only the first part of the PDF was used.':'')+'\n\n'+(data.result||'No study guide was returned.');
+    pdfActions.hidden=!data.result;
     pdfHint.textContent='PDF processed. Verify important facts against the original document.';
   }catch(error){pdfResult.classList.add('error');pdfResult.textContent=error.message||'Something went wrong. Please try again.';pdfHint.textContent='PDF processing did not complete.';}
   finally{pdfSubmit.disabled=false;pdfSubmit.textContent='Study this PDF →';}
