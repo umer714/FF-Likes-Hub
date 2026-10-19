@@ -15,6 +15,9 @@ Mindora is an AI-powered study and notes platform in development. The responsive
 - [x] Daily and longest study streak tracking
 - [x] Export/import backup for saved notes, daily goal, and study history (JSON)
 - [x] AI-generated personalized study planner
+- [x] Installable PWA manifest and Mindora app icons
+- [x] Service worker shell caching for basic offline page access
+- [x] Study streaks and JSON export/restore for local data
 - [ ] Accounts and cloud-synced persistence
 - [ ] Free/premium limits and billing
 
@@ -52,7 +55,7 @@ JSON body fields: `subject` (required, up to 100 characters), `examDate` (option
 AI usage may incur provider charges. Review your provider's pricing and usage limits before enabling it publicly.
 
 ## Important status
-The AI backend code and homepage forms are implemented, but they are **not confirmed live or usable until a valid key is configured and the deployment is tested**. PDF extraction currently supports selectable text only; OCR, user accounts, cloud database persistence, and billing are not implemented. The AI study planner is available in code but still needs deployment verification.
+The AI backend code and homepage forms are implemented, but they are **not confirmed live or usable until a valid key is configured and the deployment is tested**. PDF extraction currently supports selectable text only; OCR, user accounts, cloud database persistence, and billing are not implemented. The AI study planner and installable PWA are available in code but still need deployment verification. Offline support caches the app shell; AI API requests still require an internet connection.
 
 ## Development notes
 This repository was originally used for a Free Fire project and is being converted in stages. Some legacy files may remain until they can be safely reviewed and removed. Never commit API keys, credentials, or environment files. Validate user input and uploaded files before processing.
