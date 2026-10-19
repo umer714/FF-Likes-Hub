@@ -292,7 +292,7 @@ document.getElementById('undoMinutes').addEventListener('click',()=>{
   catch{renderGoal('Could not update study history in this browser.');}
 });
 renderGoal();
-renderWeeklyHistory();renderStreak();
+renderWeeklyHistory();
 
 
 function readSavedItems(){
@@ -572,6 +572,8 @@ backupFileInput.addEventListener('change',async()=>{
   }catch(error){savedNotice.textContent=error.message||'Could not restore this backup.';savedNotice.classList.add('error');}
   finally{backupFileInput.value='';}
 });
+
+renderStreak();
 </script>
 </body>
 </html>
