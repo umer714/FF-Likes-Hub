@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Sitemap: https://ff-likes-c60o055h0-buisnesstime321-2531.vercel.app/sitemap.xml
