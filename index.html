@@ -37,7 +37,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 32px;color:#8390ad;font-s
 <div class="wrap">
 <nav aria-label="Main navigation">
 <a class="brand" href="#" aria-label="Mindora home"><span class="mark">M</span><span>mind<b>ora</b></span></a>
-<div class="navlinks"><a href="#features">Features</a><a href="#study-planner">Study planner</a><a href="#how">How it works</a><button type="button" class="navbtn" id="installMindora" hidden>Install app ↓</button><a class="navbtn" href="#get-started">Explore Mindora ↗</a></div>
+<div class="navlinks"><a href="#features">Features</a><a href="#study-planner">Study planner</a><a href="#how">How it works</a><button type="button" class="navbtn" id="installMindora">📲 Install App</button><a class="navbtn" href="#get-started">Explore Mindora ↗</a></div>
 </nav>
 <main>
 <header class="hero">
@@ -587,13 +587,17 @@ window.addEventListener('beforeinstallprompt',event=>{
   event.preventDefault();mindoraInstallPrompt=event;installMindoraButton.hidden=false;
 });
 installMindoraButton.addEventListener('click',async()=>{
-  if(!mindoraInstallPrompt){plannerStatus.textContent='If installation is supported, open your browser menu and choose “Install app” or “Add to Home screen”.';return;}
+  if(!mindoraInstallPrompt){
+    alert('To install Mindora: open your browser menu (⋮) and choose “Install app” or “Add to Home screen”. If neither option appears, open the website in Chrome and try again after the page finishes loading.');
+    return;
+  }
   mindoraInstallPrompt.prompt();
   await mindoraInstallPrompt.userChoice;
-  mindoraInstallPrompt=null;installMindoraButton.hidden=true;
+  mindoraInstallPrompt=null;
 });
 window.addEventListener('appinstalled',()=>{
-  installMindoraButton.hidden=true;plannerStatus.textContent='Mindora was added to your device.';
+  installMindoraButton.textContent='✓ App Installed';
+  installMindoraButton.disabled=true;
 });
 if('serviceWorker' in navigator && location.protocol.startsWith('http')){
   window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
