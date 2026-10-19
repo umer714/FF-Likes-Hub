@@ -12,6 +12,8 @@ Mindora is an AI-powered study and notes platform in development. The responsive
 - [x] Connect the homepage study form to the study endpoint
 - [x] PDF text extraction and document study (text-based PDFs up to 1.5 MB; scanned/image-only PDFs are not supported yet)
 - [x] Browser-local saved notes and study progress tracker
+- [x] Daily and longest study streak tracking
+- [x] Export/import backup for saved notes, daily goal, and study history (JSON)
 - [x] AI-generated personalized study planner
 - [ ] Accounts and cloud-synced persistence
 - [ ] Free/premium limits and billing
@@ -61,7 +63,7 @@ This repository was originally used for a Free Fire project and is being convert
 - Set `OPENAI_API_KEY` only in the hosting provider's server-side environment variables. Never put it in `index.html`, browser JavaScript, or a public repository file.
 - Optionally set `OPENAI_MODEL` to a model available to the configured API account; the current default is `gpt-4.1-mini`.
 - The study and PDF endpoints validate request shapes and input sizes, and provider requests have a timeout.
-- The current public study endpoints do not provide user accounts, persistent history, or a durable cross-instance rate limiter. Do not treat the app as production-ready for unrestricted public traffic until abuse controls and usage limits are implemented.
+- The current public study endpoints do not provide user accounts, cloud-synced history, or a durable cross-instance rate limiter. Local progress can be exported and restored with a Mindora JSON backup. Do not treat the app as production-ready for unrestricted public traffic until abuse controls and usage limits are implemented.
 - After changing environment variables, redeploy the project and verify `/api/health`, `/api/status`, a text study request, and a selectable-text PDF.
 
 ## Deployment verification checklist
