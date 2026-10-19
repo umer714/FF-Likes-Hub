@@ -16,7 +16,15 @@ const TASKS = {
   },
   flashcards: {
     label: "Flashcards",
-    instruction: "Create up to 10 useful flashcards based only on the supplied study material. Format each as Question: ... and Answer: ... ."
+    instruction: "Create up to 10 useful flashcards based only on the supplied study material. Format each as Question: ... and Answer: ... . Prioritize high-value concepts and keep each answer concise."
+  },
+  outline: {
+    label: "Study outline",
+    instruction: "Turn the supplied study material into a structured outline with a clear title, main headings, nested subtopics, key terms, and a short revision checklist. Preserve the source's meaning and do not invent facts or syllabus chapters."
+  },
+  mnemonics: {
+    label: "Memory tricks",
+    instruction: "Help the student remember the supplied study material. Identify key facts or ordered lists, then create simple mnemonics, memory hooks, and short recall prompts. Explain what each mnemonic stands for, avoid confusing or misleading wordplay, and do not invent facts absent from the source."
   }
 };
 
@@ -58,7 +66,7 @@ export default async function handler(req, res) {
   const text = typeof body.text === "string" ? body.text.trim() : "";
 
   if (!TASKS[task]) {
-    return sendError(res, 400, "Choose summarize, explain, quiz, or flashcards.", "INVALID_TASK");
+    return sendError(res, 400, "Choose summarize, explain, outline, quiz, flashcards, or mnemonics.", "INVALID_TASK");
   }
   if (!text) {
     return sendError(res, 400, "Add study text first.", "TEXT_REQUIRED");
