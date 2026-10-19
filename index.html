@@ -476,7 +476,7 @@ plannerForm.addEventListener('submit',async(event)=>{
   const topics=document.getElementById('plannerTopics').value.trim();
   plannerResult.className='planner-result show';plannerResult.textContent='';plannerActions.hidden=true;
   if(!subject){plannerResult.classList.add('error');plannerResult.textContent='Please enter a subject or course.';return;}
-  if(examDate&&examDate<new Date().toLocaleDateString('en-CA')){plannerResult.classList.add('error');plannerResult.textContent='Please choose today or a future target date.';return;}
+  const now=new Date();const todayKey=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');if(examDate&&examDate<todayKey){plannerResult.classList.add('error');plannerResult.textContent='Please choose today or a future target date.';return;}
   plannerSubmit.disabled=true;plannerSubmit.textContent='Building plan…';plannerStatus.textContent='Creating a schedule that fits your available time…';plannerResult.textContent='Preparing your personalized plan…';
   try{
     const response=await fetch('/api/study-plan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({subject,examDate,dailyMinutes,level,language,goal,topics})});
