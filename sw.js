@@ -1,4 +1,4 @@
-const CACHE_NAME = "mindora-shell-v3";
+const CACHE_NAME = "mindora-shell-v4";
 const APP_SHELL = ["/", "/dashboard.html", "/manifest.webmanifest", "/icons/icon-192.svg", "/icons/icon-512.svg"];
 
 self.addEventListener("install", (event) => {
