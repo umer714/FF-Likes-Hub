@@ -122,10 +122,10 @@ footer{border-top-color:#d2dcff18;color:#8793af}.footlinks a{transition:color .2
 /* Mindora premium ambient wallpaper + app launch experience */
 body{position:relative;isolation:isolate;background:#070a16}
 .mindora-atmosphere{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 50% -15%,#172c50 0%,transparent 55%),#070a16}
-.mindora-atmosphere:before,.mindora-atmosphere:after,.mindora-aurora{content:"";position:absolute;width:min(76vw,760px);height:min(76vw,760px);border-radius:50%;filter:blur(88px);opacity:.22;will-change:transform}
-.mindora-atmosphere:before{top:-34%;left:-22%;background:radial-gradient(circle,#27b9df 0%,#3658b9 35%,transparent 70%);animation:mindoraDriftA 24s ease-in-out infinite alternate}
-.mindora-atmosphere:after{right:-28%;top:12%;background:radial-gradient(circle,#8757ef 0%,#5336a9 38%,transparent 70%);animation:mindoraDriftB 29s ease-in-out infinite alternate}
-.mindora-aurora{left:24%;bottom:-58%;width:min(90vw,900px);height:min(70vw,700px);background:radial-gradient(ellipse,#167b9a 0%,#3c398a 34%,transparent 72%);opacity:.13;animation:mindoraDriftA 33s ease-in-out infinite alternate-reverse}
+.mindora-atmosphere:before,.mindora-atmosphere:after,.mindora-aurora{content:"";position:absolute;width:min(76vw,760px);height:min(76vw,760px);border-radius:50%;filter:blur(88px);opacity:.38;mix-blend-mode:screen;will-change:transform}
+.mindora-atmosphere:before{top:-34%;left:-22%;background:radial-gradient(circle,#27b9df 0%,#3658b9 35%,transparent 70%);animation:mindoraDriftA 15s ease-in-out infinite alternate}
+.mindora-atmosphere:after{right:-28%;top:12%;background:radial-gradient(circle,#8757ef 0%,#5336a9 38%,transparent 70%);animation:mindoraDriftB 19s ease-in-out infinite alternate}
+.mindora-aurora{left:24%;bottom:-58%;width:min(90vw,900px);height:min(70vw,700px);background:radial-gradient(ellipse,#167b9a 0%,#3c398a 34%,transparent 72%);opacity:.24;animation:mindoraDriftA 22s ease-in-out infinite alternate-reverse}
 #mindoraParticles{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
 .wrap{position:relative;z-index:1}
 @keyframes mindoraDriftA{0%{transform:translate3d(-3%,0,0) scale(.92)}100%{transform:translate3d(11%,12%,0) scale(1.12)}}
@@ -144,7 +144,7 @@ body{position:relative;isolation:isolate;background:#070a16}
 .mindora-splash-status{margin-top:13px;color:#7584a8;font-size:10px;letter-spacing:.7px}
 @keyframes mindoraRing{0%,100%{transform:scale(.98);opacity:.55}50%{transform:scale(1.05);opacity:1}}
 @keyframes mindoraLoad{0%{transform:translateX(-110%)}100%{transform:translateX(250%)}}
-@media(max-width:600px){.mindora-atmosphere:before,.mindora-atmosphere:after,.mindora-aurora{filter:blur(62px);opacity:.19}#mindoraParticles{opacity:.34}}
+@media(max-width:600px){.mindora-atmosphere:before,.mindora-atmosphere:after{filter:blur(46px);opacity:.30}.mindora-aurora{filter:blur(48px);opacity:.20}#mindoraParticles{opacity:.48}}
 @media(prefers-reduced-motion:reduce){.mindora-atmosphere:before,.mindora-atmosphere:after,.mindora-aurora,.mindora-splash-emblem:before,.mindora-splash-loader:after{animation:none!important}.mindora-splash,.mindora-splash-inner{transition:none}}
 </style>
 </head>
@@ -733,7 +733,7 @@ document.addEventListener('click',e=>{const m=document.querySelector('.menu');if
  const standalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
  if(standalone&&splash){
    splash.classList.add('is-visible');
-   window.setTimeout(()=>{splash.classList.remove('is-visible');window.setTimeout(()=>splash.remove(),450)},1450);
+   window.setTimeout(()=>{splash.classList.remove('is-visible');window.setTimeout(()=>splash.remove(),450)},2200);
  } else if(splash) splash.remove();
  if(!canvas||reduced||navigator.connection?.saveData)return;
  const ctx=canvas.getContext('2d',{alpha:true}); if(!ctx)return;
