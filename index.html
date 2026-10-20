@@ -755,8 +755,7 @@ document.addEventListener('click',e=>{const m=document.querySelector('.menu');if
      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(168,213,255,'+p.a+')';ctx.fill();
      for(let j=i+1;j<points.length;j++){
        const q=points[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy);
-       if(d<mobile?0:0){} 
-       if(d<mobile?78:112){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(115,157,238,'+((1-d/(mobile?78:112))*.09)+')';ctx.lineWidth=.6;ctx.stroke();}
+       if(d<(mobile?78:112)){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(115,157,238,'+((1-d/(mobile?78:112))*.09)+')';ctx.lineWidth=.6;ctx.stroke();}
      }
    }
    raf=requestAnimationFrame(draw);
