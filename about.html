@@ -39,5 +39,30 @@ footer a{margin-right:12px}
 :focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
 @media(max-width:600px){.wrap{width:calc(100% - 28px)}header{padding:16px 0;align-items:flex-start}header nav,header .navlinks{gap:4px}header nav a,header .navlinks a,header>a:not(.brand){font-size:12px;padding:7px 8px}main{padding-top:26px}h1{letter-spacing:-1.3px}article,.card,.panel,.box,.tool,.guide,.feature,.faq{padding:16px;border-radius:14px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* Mindora premium product-system polish */
+:root{--bg:#070914;--cyan:#8ce9ee;--purple:#b5a3ff;--text:#f5f7ff;--muted:#a5b0c8;--line:#d2dcff1c}
+body{background-image:radial-gradient(ellipse at 8% 0%,#183a5960,transparent 34%),radial-gradient(ellipse at 92% 16%,#37245b55,transparent 34%),linear-gradient(180deg,#080d1a 0%,#070914 70%,#090d19 100%);background-attachment:fixed}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.13;background-image:linear-gradient(#9eb4ff0b 1px,transparent 1px),linear-gradient(90deg,#9eb4ff0b 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,black,transparent 78%)}
+.wrap{width:min(1080px,calc(100% - 40px))}
+header{position:relative;z-index:5;padding:22px 0;border-bottom-color:#d2dcff1b;background:#080b17b8;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.brand{font-size:22px;letter-spacing:-1px}
+.brand b{color:#9fe9ec}
+a{transition:color .2s,border-color .2s,background .2s}
+h1,h2,h3,h4{letter-spacing:-.7px;line-height:1.15}
+h1{font-size:clamp(36px,5.5vw,58px);letter-spacing:-2.5px}
+h2{font-size:clamp(24px,3.5vw,36px);letter-spacing:-1.2px}
+p,li{line-height:1.85}
+main{padding-top:26px;padding-bottom:58px}
+article,.panel,.card,.tool-card,.content-card,.faq-item,.guide-card,.feature-card,form,.notice,.callout,.result,.planner-shell,.studytool{border-color:#d2dcff20;border-radius:18px}
+article,.panel,.card,.tool-card,.content-card,.faq-item,.guide-card,.feature-card,.planner-shell,.studytool{background:linear-gradient(145deg,#121c30e8,#0a0f1ef5);box-shadow:0 16px 42px #00025,0 1px #ffffff08 inset}
+input,select,textarea{border-radius:12px!important;border-color:#d2dcff28!important;background:#080d1a!important;color:#f5f7ff!important}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#8ce9ee!important;box-shadow:0 0 0 4px #8ce9ee0e}
+button,.button,.btn,[type=submit]{border-radius:12px;transition:transform .2s,filter .2s,border-color .2s}
+button:hover,.button:hover,.btn:hover,[type=submit]:hover{filter:brightness(1.06);transform:translateY(-1px)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #8ce9ee;outline-offset:4px}
+footer{border-top:1px solid #d2dcff1b;color:#8793af;padding:25px 0}
+@media(max-width:600px){.wrap{width:calc(100% - 30px)}header{padding:17px 0}main{padding-top:18px;padding-bottom:40px}h1{font-size:clamp(34px,10vw,46px);letter-spacing:-1.8px}h2{letter-spacing:-.8px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
 </style>
 </head><body><div class="wrap"><header><nav><a class="brand" href="/">mind<b>ora</b></a><div class="links"><a href="/">Home</a><a href="/dashboard.html">Dashboard</a><a href="/contact.html">Contact</a></div></nav></header><main><article><h1>About Mindora</h1><p>Mindora is a learning workspace designed to help students organize study sessions and make learning more focused. Our goal is simple: <strong>Learn Smarter. Go Further.</strong></p><div class="panel"><h2>What you can do</h2><ul><li>Turn study text into summaries and clear explanations.</li><li>Practice with quizzes, flashcards, outlines, and memory aids.</li><li>Work with selectable-text PDFs where supported.</li><li>Plan study sessions and track progress on your device.</li></ul></div><h2>Designed for focused learning</h2><p>Mindora provides study assistance, not a substitute for your own understanding, teacher guidance, or fact-checking. AI-generated content can be incorrect, so review important answers.</p><a class="button" href="/#ai-study">Explore study tools</a><a class="button" href="/dashboard.html">Open dashboard</a></article></main><footer><div class="links"><span>© <span id="year"></span> Mindora</span><a href="/">Home</a><a href="/dashboard.html">Dashboard</a><a href="/ai-study-tools.html">AI study tools</a><a href="/pdf-study-assistant.html">PDF assistant</a><a href="/study-planner.html">Study planner</a><a href="/study-guides.html">Study guides</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div></footer></div><script>document.getElementById('year').textContent=new Date().getFullYear()</script></body></html>
