@@ -1,13 +1,13 @@
 {
   "name": "Mindora — Learn Smarter. Go Further.",
   "short_name": "Mindora",
-  "description": "Your AI-powered study space for notes, quizzes, flashcards, study plans, and progress tracking.",
+  "description": "A premium AI-powered study space for notes, quizzes, flashcards, PDF study help, and focused learning.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#080b18",
-  "theme_color": "#080b18",
+  "background_color": "#070a16",
+  "theme_color": "#070a16",
   "categories": [
     "education",
     "productivity"
@@ -25,5 +25,9 @@
       "type": "image/svg+xml",
       "purpose": "any"
     }
+  ],
+  "display_override": [
+    "standalone",
+    "minimal-ui"
   ]
 }
