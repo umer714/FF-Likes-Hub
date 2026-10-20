@@ -74,6 +74,42 @@ footer{border-top-color:#b9c9ef1c}
 :focus-visible{outline:2px solid #83e9ef;outline-offset:4px}
 @media(max-width:560px){.intro{padding-top:36px}.intro h1{letter-spacing:-1.8px}.grid{gap:12px}.card{border-radius:17px;padding:18px}.navlinks{gap:7px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* Ultra-premium dashboard refinement */
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.14;background-image:linear-gradient(#9eb4ff0b 1px,transparent 1px),linear-gradient(90deg,#9eb4ff0b 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,black,transparent 78%)}
+.wrap{width:min(1200px,calc(100% - 48px))}
+nav{height:82px;position:relative;z-index:10}
+.menu summary{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:#ffffff06;border-color:#d2dcff24;cursor:pointer}
+.menu-panel{border:1px solid #d2dcff26!important;border-radius:17px!important;background:#0b1121f7!important;backdrop-filter:blur(22px)}
+.intro{position:relative;overflow:hidden;padding:64px 0 38px;max-width:850px}
+.intro:after{content:"";display:block;width:64px;height:3px;margin-top:23px;border-radius:9px;background:linear-gradient(90deg,#8ce9ee,#b5a3ff)}
+.intro .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid #8ce9ee30;border-radius:99px;background:#8ce9ee09;font-size:10px}
+.intro h1{max-width:820px;font-size:clamp(42px,5.5vw,68px);letter-spacing:-3.4px;line-height:1.04;margin:20px 0 15px}
+.intro h1 span{background:linear-gradient(105deg,#9cece9,#b7c3ff 58%,#d7bfff);background-clip:text;-webkit-background-clip:text;color:transparent!important}
+.intro p{max-width:650px;color:#a5b0c8;font-size:14px;line-height:1.9}
+.grid{gap:17px;padding-bottom:60px}
+.card{border-radius:21px;padding:25px;background:linear-gradient(145deg,#121c30e8,#0a0f1ef5);border-color:#d2dcff1c;box-shadow:0 17px 45px #00025,0 1px #ffffff08 inset;transition:transform .22s,border-color .22s,box-shadow .22s}
+.card:hover{border-color:#8ce9ee42;box-shadow:0 22px 55px #0003,0 1px #ffffff0a inset}
+.card-label{font-size:10px;letter-spacing:1.65px;color:#aab7d2}
+.big{font-size:clamp(34px,3.3vw,45px);letter-spacing:-2px;margin:11px 0 4px}
+.sub{color:#8e9bb8;font-size:12px;line-height:1.7}
+.card h2{font-size:20px;letter-spacing:-.6px;margin-top:0}
+.card>p,.split p{color:#9eabc6;font-size:12px;line-height:1.8}
+.progress{height:8px;border-radius:99px;background:#ffffff0d;overflow:hidden}.progress span{border-radius:99px}
+.chart{min-height:160px}
+.btn{border-radius:12px;background:linear-gradient(110deg,#a2eeec,#c0b3ff);color:#07111e;font-weight:800;box-shadow:0 8px 25px #8ce9ee10,0 1px #ffffff80 inset}
+.btn.secondary{background:#ffffff05;color:#edf0ff;border-color:#d2dcff25}
+.quick{padding:15px;border-radius:16px;border-color:#d2dcff1b;background:linear-gradient(145deg,#ffffff05,#ffffff02);gap:12px}
+.quick strong{font-size:12px;letter-spacing:-.15px}.quick small{color:#8f9bb6;line-height:1.65}
+.quick .icon{width:43px;height:43px;border-radius:13px;border:1px solid #8ce9ee25;background:linear-gradient(145deg,#8ce9ee12,#b5a3ff12)}
+.tip{border-left:2px solid #b5a3ff;background:#b5a3ff0c;border-radius:0 13px 13px 0}
+.saved-item{border-radius:15px;background:#ffffff03;border-color:#d2dcff1d}
+.empty{border-radius:15px;background:#ffffff03;color:#8f9bb6}
+.notice{border-radius:14px;background:#ffffff03;color:#8793af}
+footer{padding:27px 0 34px;color:#8793af}
+:focus-visible{outline:2px solid #8ce9ee;outline-offset:4px}
+@media(max-width:760px){.wrap{width:calc(100% - 32px)}.intro{padding:48px 0 28px}.intro h1{letter-spacing:-2.4px}.grid{gap:13px}.card{padding:20px;border-radius:18px}}
+@media(max-width:480px){.wrap{width:calc(100% - 28px)}.intro{padding-top:37px}.intro h1{font-size:clamp(39px,11vw,53px);letter-spacing:-2px}.grid{grid-template-columns:1fr}.card{padding:19px}.big{font-size:36px}.quickgrid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
