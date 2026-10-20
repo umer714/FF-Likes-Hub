@@ -23,6 +23,45 @@
 :focus-visible{outline:3px solid var(--cyan,#6ce9f5);outline-offset:3px;border-radius:5px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
+
+<style id="mindora-signature-redesign">
+:root{color-scheme:dark;--bg:#070b17;--cyan:#83e9ef;--purple:#b5a5ff;--text:#f6f7ff;--muted:#a8b4cb;--line:#b9c9ef20}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:28px}
+body{margin:0;min-height:100vh;color:var(--text);background-color:var(--bg);background-image:radial-gradient(ellipse at 12% 0%,#24486b65,transparent 38%),radial-gradient(ellipse at 100% 18%,#392c6745,transparent 34%),linear-gradient(180deg,#080d1a,#070b17 72%);background-attachment:fixed;font:16px/1.8 'DM Sans',system-ui,sans-serif}
+.wrap{width:min(1000px,calc(100% - 40px));margin:auto}
+header{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:22px 0;border-bottom:1px solid var(--line);background:#070b17a8}
+.brand{font:700 21px/1.2 'Space Grotesk',system-ui,sans-serif;letter-spacing:-.8px;color:#f6f7ff;text-decoration:none}
+.brand b,.brand span{color:#9aeeef}
+header nav,header .navlinks{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+header nav a,header .navlinks a,header>a:not(.brand){color:#c8d2e7;text-decoration:none;font-size:13px;font-weight:650;padding:8px 11px;border:1px solid transparent;border-radius:10px}
+header nav a:hover,header .navlinks a:hover,header>a:not(.brand):hover{color:#a8f0ef;background:#83e9ef0a;border-color:#83e9ef20}
+main{padding:38px 0 24px}
+h1,h2,h3,h4{font-family:'Space Grotesk','DM Sans',system-ui,sans-serif;line-height:1.2;letter-spacing:-.7px;color:#f7f8ff}
+h1{font-size:clamp(34px,5vw,54px);letter-spacing:-2px;line-height:1.08;margin:18px 0}
+h2{font-size:clamp(23px,3vw,31px);margin:30px 0 12px}
+h3{font-size:19px;margin:22px 0 8px}
+p,li{color:#b2bed5}
+a{color:#9ceef0;text-underline-offset:4px}
+a:hover{color:#d1c5ff}
+strong{color:#edf2ff}
+article,section,.card,.panel,.box,.tool,.guide,.feature,.faq,.callout,form{border-color:var(--line)}
+article,.card,.panel,.box,.tool,.guide,.feature,.faq{border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#121e34d9,#0b1121eb);padding:20px;box-shadow:0 12px 35px #0002}
+article+article,.card+.card,.panel+.panel{margin-top:14px}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+ul,ol{padding-left:24px}li{padding-left:3px;margin:6px 0}
+label{display:block;color:#dce5f8;font-weight:700;font-size:13px;margin:0 0 6px}
+input,select,textarea{width:100%;min-width:0;background:#080e1c!important;color:var(--text)!important;border:1px solid #c5d5ff27!important;border-radius:11px!important;padding:12px 13px!important;font:inherit!important;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--cyan)!important;box-shadow:0 0 0 3px #83e9ef10}
+button,.button,[type=submit]{border:0;border-radius:11px;padding:12px 17px;background:linear-gradient(110deg,#a3f0ef,#c2b4ff);color:#08111d;font:700 13px 'DM Sans',system-ui,sans-serif;cursor:pointer;transition:transform .18s,filter .18s}
+button:hover,.button:hover,[type=submit]:hover{transform:translateY(-1px);filter:brightness(1.06)}
+pre,code{overflow-wrap:anywhere;white-space:pre-wrap}
+footer{border-top:1px solid var(--line);border-bottom:0;margin-top:42px;padding:24px 0 32px;color:#8794af;font-size:12px}
+footer a{margin-right:12px}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+@media(max-width:600px){.wrap{width:calc(100% - 28px)}header{padding:16px 0;align-items:flex-start}header nav,header .navlinks{gap:4px}header nav a,header .navlinks a,header>a:not(.brand){font-size:12px;padding:7px 8px}main{padding-top:26px}h1{letter-spacing:-1.3px}article,.card,.panel,.box,.tool,.guide,.feature,.faq{padding:16px;border-radius:14px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
 </head>
 <body><div class="wrap">
 <header><nav aria-label="Main navigation"><a class="brand" href="/">mind<b>ora</b></a><div class="links"><a href="/">Home</a><a href="/dashboard.html">Dashboard</a><a href="/ai-study-tools.html">AI study tools</a><a href="/contact.html">Contact</a></div></nav></header>
