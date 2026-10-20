@@ -1,5 +1,9 @@
-const CACHE_NAME = "mindora-shell-v5";
-const APP_SHELL = ["/", "/dashboard.html", "/manifest.webmanifest", "/icons/icon-192.svg", "/icons/icon-512.svg"];
+const CACHE_NAME = "mindora-shell-v6";
+const APP_SHELL = [
+  "/", "/dashboard.html", "/about.html", "/contact.html", "/privacy.html",
+  "/ai-study-tools.html", "/pdf-study-assistant.html", "/study-planner.html",
+  "/manifest.webmanifest", "/icons/icon-192.svg", "/icons/icon-512.svg"
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil((async () => {
@@ -28,7 +32,7 @@ self.addEventListener("fetch", (event) => {
     event.respondWith((async () => {
       try {
         const response = await fetch(request);
-        if (response.ok) (await caches.open(CACHE_NAME)).put("/", response.clone());
+        if (response.ok) (await caches.open(CACHE_NAME)).put(request, response.clone());
         return response;
       } catch {
         return (await caches.match(request)) || (await caches.match("/")) || new Response("Mindora is offline. Reconnect to the internet to load the latest page.", { status: 503, headers: { "Content-Type": "text/plain; charset=utf-8" } });
