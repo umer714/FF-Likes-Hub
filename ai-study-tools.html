@@ -2,6 +2,22 @@
 :focus-visible{outline:3px solid var(--cyan,#6ce9f5);outline-offset:3px;border-radius:5px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
+<style id="mindora-tool-hub-upgrade">
+.tool-hub-intro{max-width:760px;margin:0 auto 24px;text-align:center}
+.tool-hub-intro .eyebrow{font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:#9ceef0;font-weight:800}
+.tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:26px 0}
+.tool-tile{position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:190px;padding:22px;border:1px solid #b9c9ef24;border-radius:19px;background:linear-gradient(145deg,#142039e8,#0b1121f7);box-shadow:0 15px 38px #0002;transition:transform .2s,border-color .2s,box-shadow .2s}
+.tool-tile:before{content:"";position:absolute;inset:0 auto auto 0;width:100%;height:2px;background:linear-gradient(90deg,#83e9ef,#b5a5ff,transparent)}
+.tool-tile:hover{transform:translateY(-3px);border-color:#83e9ef66;box-shadow:0 20px 48px #0004}
+.tool-icon{display:grid;place-items:center;width:43px;height:43px;margin-bottom:14px;border-radius:14px;background:linear-gradient(145deg,#83e9ef1d,#b5a5ff22);color:#a7f0ef;font-size:21px}
+.tool-tile h3{margin:0 0 7px;font-size:19px}.tool-tile p{margin:0 0 17px;font-size:14px;line-height:1.7}
+.tool-tile a{margin-top:auto;align-self:flex-start;padding:9px 12px;border:1px solid #b9c9ef28;border-radius:10px;text-decoration:none;font-size:13px;font-weight:750;color:#dfe8ff}
+.tool-tile a:hover{border-color:#83e9ef77;color:#a8f0ef}
+.workflow-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0}
+.workflow-step{padding:15px;border:1px solid #b9c9ef1e;border-radius:14px;background:#ffffff04}
+.workflow-step strong{display:block;color:#f4f6ff;font-size:13px}.workflow-step span{display:block;color:#a8b4cb;font-size:12px;margin-top:5px}
+@media(max-width:620px){.tool-grid{grid-template-columns:1fr}.tool-tile{min-height:0;padding:19px}.workflow-strip{grid-template-columns:1fr}.tool-hub-intro{text-align:left}}
+</style>
 <style id="mindora-signature-redesign">
 :root{color-scheme:dark;--bg:#070b17;--cyan:#83e9ef;--purple:#b5a5ff;--text:#f6f7ff;--muted:#a8b4cb;--line:#b9c9ef20}
 *{box-sizing:border-box}
@@ -99,7 +115,18 @@ nav .menu-panel{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);ba
 }
 @media(prefers-reduced-motion:reduce){nav .brand,nav .links a,nav .menu summary,.mindora-mobile-dock a{transition:none!important}}
 </style>
-</head><body><div class="wrap"><header><nav aria-label="Main navigation"><a class="brand" href="/" aria-label="Mindora home">mind<b>ora</b></a><div class="links"><a href="/">Home</a><a href="/ai-study-tools.html">AI Tools</a><a href="/pdf-study-assistant.html">PDF Assistant</a><a href="/study-planner.html">Study Planner</a><a href="/study-guides.html">Study Guides</a><a href="/dashboard.html">Dashboard</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div></nav></header><main><article><h1>AI Study Tools for Students</h1><p>Mindora brings common study workflows into one place. Use AI assistance to review material, test your understanding, and prepare organized revision notes.</p><div class="panel"><h2>Study with active recall</h2><p>Generate practice quizzes and flashcards from your notes, then try answering before checking the response. Use mistakes to decide what to review next.</p></div><h2>Summaries and explanations</h2><p>Turn long notes into shorter revision points or ask for a concept to be explained in simpler language. Compare important facts with your textbook or class materials.</p><h2>Outlines and memory aids</h2><p>Organize a topic into a structured outline or request mnemonic ideas to make revision more memorable.</p><a class="button" href="/#ai-study">Use Mindora study tools</a><a class="button" href="/dashboard.html">Track your progress</a></article></main><footer><div class="links"><span>© <span id="year"></span> Mindora</span><a href="/">Home</a><a href="/dashboard.html">Dashboard</a><a href="/ai-study-tools.html">AI study tools</a><a href="/pdf-study-assistant.html">PDF assistant</a><a href="/study-planner.html">Study planner</a><a href="/study-guides.html">Study guides</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div></footer></div><script>document.getElementById('year').textContent=new Date().getFullYear()</script><nav class="mindora-mobile-dock" aria-label="Quick navigation">
+</head><body><div class="wrap"><header><nav aria-label="Main navigation"><a class="brand" href="/" aria-label="Mindora home">mind<b>ora</b></a><div class="links"><a href="/">Home</a><a href="/ai-study-tools.html">AI Tools</a><a href="/pdf-study-assistant.html">PDF Assistant</a><a href="/study-planner.html">Study Planner</a><a href="/study-guides.html">Study Guides</a><a href="/dashboard.html">Dashboard</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div></nav></header><main><article>
+<div class="tool-hub-intro"><div class="eyebrow">Mindora learning workspace</div><h1>AI Study Tools for Students</h1><p>One focused workspace for turning class material into clear revision notes, practice questions, flashcards and structured study plans. Choose a workflow below to get started.</p></div>
+<div class="tool-grid" aria-label="Study tool collection">
+<section class="tool-tile"><div class="tool-icon" aria-hidden="true">✦</div><h3>Study Notes & Explanations</h3><p>Summarize difficult material, simplify concepts and organize key facts for revision.</p><a href="/#ai-study">Open study workspace →</a></section>
+<section class="tool-tile"><div class="tool-icon" aria-hidden="true">▤</div><h3>PDF Study Assistant</h3><p>Bring your PDF learning material into a focused workflow for study and revision.</p><a href="/pdf-study-assistant.html">Explore PDF assistant →</a></section>
+<section class="tool-tile"><div class="tool-icon" aria-hidden="true">◇</div><h3>Study Planner</h3><p>Break your learning goals into manageable tasks and build a more consistent routine.</p><a href="/study-planner.html">Plan a study session →</a></section>
+<section class="tool-tile"><div class="tool-icon" aria-hidden="true">▦</div><h3>Progress Dashboard</h3><p>Review your locally saved study activity, goal progress, streak and saved notes.</p><a href="/dashboard.html">View dashboard →</a></section>
+</div>
+<h2>Make revision more effective</h2>
+<div class="workflow-strip"><div class="workflow-step"><strong>01 · Understand</strong><span>Start with a short explanation and identify the core ideas.</span></div><div class="workflow-step"><strong>02 · Practise</strong><span>Use questions and flashcards to check what you remember.</span></div><div class="workflow-step"><strong>03 · Review</strong><span>Return to weak areas and plan the next focused session.</span></div></div>
+<div class="panel"><h2>Study tip</h2><p>Try answering a question from memory before looking at your notes. Check the answer afterward and correct any gaps using your textbook or class material.</p></div>
+</article></main><footer><div class="links"><span>© <span id="year"></span> Mindora</span><a href="/">Home</a><a href="/dashboard.html">Dashboard</a><a href="/ai-study-tools.html">AI study tools</a><a href="/pdf-study-assistant.html">PDF assistant</a><a href="/study-planner.html">Study planner</a><a href="/study-guides.html">Study guides</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div></footer></div><script>document.getElementById('year').textContent=new Date().getFullYear()</script><nav class="mindora-mobile-dock" aria-label="Quick navigation">
 <a href="/" aria-label="Home"><span aria-hidden="true">⌂</span>Home</a>
 <a href="/ai-study-tools.html" aria-label="AI study tools"><span aria-hidden="true">✧</span>AI Tools</a>
 <a href="/study-planner.html" aria-label="Study planner"><span aria-hidden="true">◷</span>Planner</a>
