@@ -2,6 +2,33 @@
 :focus-visible{outline:3px solid var(--cyan,#6ce9f5);outline-offset:3px;border-radius:5px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
+<style id="mindora-planner-workspace">
+.planner-hero{padding:22px 0 18px}.planner-hero .eyebrow{font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:#9ceef0;font-weight:800}
+.planner-hero h1{margin:10px 0;font-size:clamp(34px,5vw,52px);letter-spacing:-2px}
+.planner-hero p{max-width:720px}
+.planner-app{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:16px;margin:22px 0}
+.planner-card{min-width:0;padding:22px;border:1px solid #b9c9ef22;border-radius:20px;background:linear-gradient(145deg,#121e34ed,#0b1121f5);box-shadow:0 16px 42px #0002}
+.planner-card h2{margin:0 0 8px;font-size:22px}.planner-card .sub{margin:0 0 18px;color:#a8b4cb;font-size:13px}
+.plan-form{display:grid;gap:12px}.plan-form label{display:block;margin-bottom:6px;color:#dce5f8;font-size:13px;font-weight:750}
+.plan-form input,.plan-form select{width:100%;min-width:0;background:#080e1c;color:#f5f7ff;border:1px solid #c5d5ff27;border-radius:11px;padding:12px;font:inherit}
+.plan-form input:focus,.plan-form select:focus{outline:2px solid #83e9ef;outline-offset:2px}
+.plan-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}.plan-primary{border:0;border-radius:12px;padding:12px 16px;background:linear-gradient(110deg,#a3f0ef,#c2b4ff);color:#08111d;font-weight:850;cursor:pointer}
+.plan-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:16px 0}
+.plan-stat{padding:12px;border:1px solid #b9c9ef20;border-radius:13px;background:#ffffff04}.plan-stat strong{display:block;font-size:23px;letter-spacing:-.7px}.plan-stat span{font-size:11px;color:#a8b4cb}
+.plan-progress{height:7px;border-radius:99px;background:#ffffff0c;overflow:hidden;margin:10px 0 17px}.plan-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#83e9ef,#b5a5ff);transition:width .25s}
+.plan-list{display:grid;gap:9px}.plan-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:start;gap:11px;padding:13px;border:1px solid #b9c9ef20;border-radius:14px;background:#ffffff03}
+.plan-item input{width:18px;height:18px;margin-top:4px;accent-color:#83e9ef}
+.plan-item h3{margin:0 0 4px;font-size:15px;overflow-wrap:anywhere}.plan-item p{margin:0;font-size:12px;color:#a8b4cb}.plan-item.is-done h3{text-decoration:line-through;color:#9ba8c2}
+.plan-item button{border:1px solid #b9c9ef25;border-radius:9px;padding:7px 9px;background:#ffffff05;color:#dce5f8;font-size:12px;cursor:pointer}
+.plan-item button:hover{border-color:#83e9ef70}
+.plan-empty{padding:22px;text-align:center;border:1px dashed #b9c9ef30;border-radius:14px;color:#a8b4cb;font-size:13px}
+.plan-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0}
+.plan-toolbar select{max-width:160px;background:#080e1c;color:#f5f7ff;border:1px solid #b9c9ef25;border-radius:10px;padding:8px}
+.plan-message{min-height:22px;color:#9ceef0;font-size:12px}
+@media(max-width:700px){.planner-app{grid-template-columns:1fr}.planner-card{padding:17px}.planner-hero h1{letter-spacing:-1.4px}}
+@media(max-width:380px){.plan-row{grid-template-columns:1fr}.plan-stats{gap:6px}.plan-stat{padding:9px}.plan-stat strong{font-size:19px}}
+@media(prefers-reduced-motion:reduce){.plan-progress span{transition:none}}
+</style>
 <style id="mindora-signature-redesign">
 :root{color-scheme:dark;--bg:#070b17;--cyan:#83e9ef;--purple:#b5a5ff;--text:#f6f7ff;--muted:#a8b4cb;--line:#b9c9ef20}
 *{box-sizing:border-box}
@@ -99,7 +126,60 @@ nav .menu-panel{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);ba
 }
 @media(prefers-reduced-motion:reduce){nav .brand,nav .links a,nav .menu summary,.mindora-mobile-dock a{transition:none!important}}
 </style>
-</head><body><div class="wrap"><header><nav aria-label="Main navigation"><a class="brand" href="/" aria-label="Mindora home">mind<b>ora</b></a><div class="links"><a href="/">Home</a><a href="/ai-study-tools.html">AI Tools</a><a href="/pdf-study-assistant.html">PDF Assistant</a><a href="/study-planner.html">Study Planner</a><a href="/study-guides.html">Study Guides</a><a href="/dashboard.html">Dashboard</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div></nav></header><main><article><h1>Study Planner & Progress Tracker</h1><p>A practical study plan makes it easier to decide what to work on next. Mindora provides study-planning tools and a dashboard for reviewing goals and progress.</p><div class="panel"><h2>Build a simple routine</h2><ol><li>Choose one or two clear topics for your next session.</li><li>Set a realistic daily study goal.</li><li>Study in focused sessions and take breaks as needed.</li><li>Review weekly progress and adjust your plan.</li></ol></div><h2>Your progress data</h2><p>Some progress indicators are stored locally in your browser. They may not sync across devices, and clearing browser data can remove them.</p><a class="button" href="/dashboard.html">Open dashboard</a><a class="button" href="/#study-planner">Create a study plan</a></article></main><footer><div class="links"><span>© <span id="year"></span> Mindora</span><a href="/">Home</a><a href="/dashboard.html">Dashboard</a><a href="/ai-study-tools.html">AI study tools</a><a href="/pdf-study-assistant.html">PDF assistant</a><a href="/study-planner.html">Study planner</a><a href="/study-guides.html">Study guides</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div></footer></div><script>document.getElementById('year').textContent=new Date().getFullYear()</script><nav class="mindora-mobile-dock" aria-label="Quick navigation">
+</head><body><div class="wrap"><header><nav aria-label="Main navigation"><a class="brand" href="/" aria-label="Mindora home">mind<b>ora</b></a><div class="links"><a href="/">Home</a><a href="/ai-study-tools.html">AI Tools</a><a href="/pdf-study-assistant.html">PDF Assistant</a><a href="/study-planner.html">Study Planner</a><a href="/study-guides.html">Study Guides</a><a href="/dashboard.html">Dashboard</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div></nav></header><main><article>
+<div class="planner-hero"><div class="eyebrow">Your personal study system</div><h1>Plan with purpose.<br><span style="background:linear-gradient(105deg,#9af1ed,#a8b8ff 65%,#d0b8ff);background-clip:text;-webkit-background-clip:text;color:transparent">Progress with confidence.</span></h1><p>Create a lightweight study task list that stays on this device. Add subjects, due dates and estimated time, then mark tasks complete as you work.</p></div>
+<div class="planner-app">
+<section class="planner-card" aria-labelledby="add-task-title">
+<h2 id="add-task-title">Build your plan</h2><p class="sub">Keep each task specific and manageable.</p>
+<form class="plan-form" id="mindoraPlanForm">
+<div><label for="planTitle">Study task</label><input id="planTitle" name="title" maxlength="100" placeholder="e.g. Revise algebra chapter 2" required></div>
+<div class="plan-row"><div><label for="planSubject">Subject</label><input id="planSubject" name="subject" maxlength="50" placeholder="e.g. Mathematics" required></div><div><label for="planDate">Due date</label><input id="planDate" name="due" type="date"></div></div>
+<div><label for="planMinutes">Estimated time</label><select id="planMinutes" name="minutes"><option value="15">15 minutes</option><option value="25" selected>25 minutes</option><option value="30">30 minutes</option><option value="45">45 minutes</option><option value="60">1 hour</option><option value="90">1 hour 30 minutes</option><option value="120">2 hours</option></select></div>
+<button class="plan-primary" type="submit">＋ Add study task</button>
+<p class="plan-message" id="planMessage" role="status" aria-live="polite"></p>
+</form>
+</section>
+<section class="planner-card" aria-labelledby="plan-list-title">
+<h2 id="plan-list-title">Your study queue</h2><p class="sub">A clear next step makes it easier to get started.</p>
+<div class="plan-stats"><div class="plan-stat"><strong id="planTotal">0</strong><span>Total tasks</span></div><div class="plan-stat"><strong id="planDone">0</strong><span>Completed</span></div><div class="plan-stat"><strong id="planTime">0m</strong><span>Planned time</span></div></div>
+<div class="plan-progress" role="progressbar" aria-label="Study tasks completed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="planProgress"><span id="planProgressFill"></span></div>
+<div class="plan-toolbar"><strong style="font-size:13px">Tasks</strong><label style="margin:0;font-size:12px">Show <select id="planFilter" aria-label="Filter study tasks"><option value="all">All</option><option value="active">To do</option><option value="done">Completed</option></select></label></div>
+<div class="plan-list" id="planList"><div class="plan-empty">Your plan is ready. Add your first study task.</div></div>
+</section>
+</div>
+<div class="panel"><h2>Keep your plan realistic</h2><p>Start with one priority, estimate time honestly, and leave room for breaks. Your tasks are saved in this browser on this device; they are not synced to an account or other devices.</p><a class="button" href="/dashboard.html">Open progress dashboard</a><a class="button" href="/#study-planner">Use the guided planner</a></div>
+</article></main><footer><div class="links"><span>© <span id="year"></span> Mindora</span><a href="/">Home</a><a href="/dashboard.html">Dashboard</a><a href="/ai-study-tools.html">AI study tools</a><a href="/pdf-study-assistant.html">PDF assistant</a><a href="/study-planner.html">Study planner</a><a href="/study-guides.html">Study guides</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div></footer></div><script id="mindora-local-planner">
+(()=> {
+const KEY='mindora_planner_tasks_v1';
+const $=id=>document.getElementById(id);
+const form=$('mindoraPlanForm'),list=$('planList'),filter=$('planFilter'),message=$('planMessage');
+const read=()=>{try{const v=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(v)?v.filter(x=>x&&typeof x.id==='string'&&typeof x.title==='string'&&typeof x.subject==='string'&&Number.isFinite(x.minutes)):[]}catch{return[]}};
+let tasks=read();
+const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(tasks));return true}catch{return false}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const render=()=>{
+const done=tasks.filter(t=>t.done).length,mins=tasks.reduce((n,t)=>n+(t.done?0:t.minutes),0),pct=tasks.length?Math.round(done/tasks.length*100):0;
+$('planTotal').textContent=tasks.length;$('planDone').textContent=done;$('planTime').textContent=mins>=60?Math.floor(mins/60)+'h'+(mins%60?' '+mins%60+'m':''):mins+'m';
+$('planProgressFill').style.width=pct+'%';$('planProgress').setAttribute('aria-valuenow',String(pct));
+const shown=tasks.filter(t=>filter.value==='all'||(filter.value==='active'&&!t.done)||(filter.value==='done'&&t.done)).sort((a,b)=>(a.done-b.done)||((a.due||'9999').localeCompare(b.due||'9999'))||b.created-a.created);
+list.replaceChildren();
+if(!shown.length){const empty=document.createElement('div');empty.className='plan-empty';empty.textContent=tasks.length?(filter.value==='done'?'No completed tasks yet.':'Everything is complete — great work!'):'Your plan is ready. Add your first study task.';list.append(empty);return}
+for(const task of shown){
+const row=document.createElement('div');row.className='plan-item'+(task.done?' is-done':'');
+const check=document.createElement('input');check.type='checkbox';check.checked=!!task.done;check.setAttribute('aria-label','Mark '+task.title+' completed');check.addEventListener('change',()=>{task.done=check.checked;persist();render()});
+const info=document.createElement('div');const title=document.createElement('h3');title.textContent=task.title;const meta=document.createElement('p');meta.textContent=task.subject+' · '+task.minutes+' min'+(task.due?' · Due '+task.due:'');info.append(title,meta);
+const remove=document.createElement('button');remove.type='button';remove.textContent='Remove';remove.setAttribute('aria-label','Remove '+task.title);remove.addEventListener('click',()=>{tasks=tasks.filter(t=>t.id!==task.id);persist();message.textContent='Task removed.';render()});
+row.append(check,info,remove);list.append(row)
+}
+};
+form.addEventListener('submit',e=>{e.preventDefault();const data=new FormData(form),title=String(data.get('title')||'').trim(),subject=String(data.get('subject')||'').trim(),due=String(data.get('due')||''),minutes=Number(data.get('minutes'));
+if(!title||!subject||!Number.isFinite(minutes)){message.textContent='Please complete the task and subject fields.';return}
+tasks.unshift({id:(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random().toString(16).slice(2)),title,subject,due,minutes,done:false,created:Date.now()});
+const ok=persist();message.textContent=ok?'Task added and saved on this device.':'Task added for this session, but browser storage is unavailable.';form.reset();$('planMinutes').value='25';render();$('planTitle').focus()
+});
+filter.addEventListener('change',render);render();
+})();
+</script><script>document.getElementById('year').textContent=new Date().getFullYear()</script><nav class="mindora-mobile-dock" aria-label="Quick navigation">
 <a href="/" aria-label="Home"><span aria-hidden="true">⌂</span>Home</a>
 <a href="/ai-study-tools.html" aria-label="AI study tools"><span aria-hidden="true">✧</span>AI Tools</a>
 <a href="/study-planner.html" aria-label="Study planner"><span aria-hidden="true">◷</span>Planner</a>
