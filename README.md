@@ -76,3 +76,18 @@ This repository was originally used for a Free Fire project and is being convert
 3. Submit a short study note and verify the response.
 4. Upload a small text-based PDF and verify the generated study guide.
 5. Check hosting logs for configuration or provider errors without printing secrets.
+
+
+## Mindora account authentication setup
+
+The premium sign-in/sign-up page uses Supabase Auth email/password endpoints. Account creation and sign-in will remain in setup mode until the project is configured.
+
+1. Create a project at https://supabase.com.
+2. In the Supabase project, open **Project Settings → API** (or the API Keys section) and copy the **Project URL** and the **anon/public key**.
+3. Edit `auth-config.js` on the `main` branch. Replace `YOUR_SUPABASE_PROJECT_URL` and `YOUR_SUPABASE_ANON_KEY` with those values.
+4. In Supabase **Authentication → URL Configuration**, set the Site URL to `https://mindorapk.vercel.app` and allow `https://mindorapk.vercel.app/login.html` as a redirect URL.
+5. In Authentication settings, choose whether new users must verify their email, then test sign-up, sign-in, and password recovery.
+
+**Security:** Only use the browser-safe anon/public key in `auth-config.js`. Never put a Supabase `service_role` key or database secret in frontend files. Keep Row Level Security enabled for any future user data tables.
+
+Current scope: this adds real email/password auth and password recovery once configured. Existing study history and saved notes still use this browser's local storage; they are not yet synced to accounts or protected behind a server-side account gate.
