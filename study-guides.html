@@ -93,8 +93,8 @@ footer{border-top:1px solid #d2dcff1b;color:#8793af;padding:25px 0}
 html{scroll-padding-top:96px}
 body{isolation:isolate}
 body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 8% 18%,rgba(38,117,190,.11),transparent 36%),radial-gradient(ellipse at 92% 8%,rgba(131,74,203,.12),transparent 34%);opacity:.95}
-nav[aria-label="Main navigation"],body>nav{position:sticky;top:0;z-index:100;isolation:isolate;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);background:linear-gradient(120deg,rgba(8,13,29,.94),rgba(18,21,47,.88));border-bottom:1px solid var(--mindora-border);box-shadow:0 10px 35px rgba(0,0,0,.16);transition:background .25s,border-color .25s}
-nav[aria-label="Main navigation"]:after,body>nav:after{content:"";position:absolute;left:5%;right:5%;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(108,233,245,.42),rgba(169,154,255,.5),transparent);pointer-events:none}
+nav[aria-label="Main navigation"],body>nav:not(.mindora-mobile-dock){position:sticky;top:0;z-index:100;isolation:isolate;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);background:linear-gradient(120deg,rgba(8,13,29,.94),rgba(18,21,47,.88));border-bottom:1px solid var(--mindora-border);box-shadow:0 10px 35px rgba(0,0,0,.16);transition:background .25s,border-color .25s}
+nav[aria-label="Main navigation"]:after,body>nav:not(.mindora-mobile-dock):after{content:"";position:absolute;left:5%;right:5%;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(108,233,245,.42),rgba(169,154,255,.5),transparent);pointer-events:none}
 nav .brand{letter-spacing:-.04em;transition:filter .2s,transform .2s}
 nav .brand:hover{filter:drop-shadow(0 0 12px rgba(108,233,245,.3));transform:translateY(-1px)}
 nav .links{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
@@ -108,7 +108,7 @@ nav .menu-panel{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);ba
 :where(a,button,input,select,textarea,summary):focus-visible{outline:2px solid var(--mindora-cyan);outline-offset:3px}
 @media(max-width:760px){
   html{scroll-padding-top:76px}
-  nav[aria-label="Main navigation"],body>nav{min-height:66px;padding-top:8px;padding-bottom:8px}
+  nav[aria-label="Main navigation"],body>nav:not(.mindora-mobile-dock){min-height:66px;padding-top:8px;padding-bottom:8px}
   nav .links{gap:4px;max-width:68%;justify-content:flex-end}
   nav .links a{font-size:12px;min-height:32px;padding:4px 7px}
   nav .links a[href="/about.html"],nav .links a[href="/contact.html"],nav .links a[href="/privacy.html"],nav .links a[href="/study-guides.html"]{display:none}
@@ -165,4 +165,7 @@ nav .menu-panel{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);ba
 <a href="/study-planner.html" aria-label="Study planner"><span aria-hidden="true">◷</span>Planner</a>
 <a href="/dashboard.html" aria-label="Dashboard"><span aria-hidden="true">▦</span>Dashboard</a>
 </nav>
+<script id="mindora-mobile-dock-active-state">
+(()=>{const p=location.pathname.replace(/\/$/,"")||"/";document.querySelectorAll(".mindora-mobile-dock a").forEach(a=>{const h=new URL(a.href,location.origin).pathname.replace(/\/$/,"")||"/";if(h===p)a.setAttribute("aria-current","page")})})();
+</script>
 </body></html>
