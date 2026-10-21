@@ -65,4 +65,44 @@ footer{border-top:1px solid #d2dcff1b;color:#8793af;padding:25px 0}
 @media(max-width:600px){.wrap{width:calc(100% - 30px)}header{padding:17px 0}main{padding-top:18px;padding-bottom:40px}h1{font-size:clamp(34px,10vw,46px);letter-spacing:-1.8px}h2{letter-spacing:-.8px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
 </style>
-</head><body><div class="wrap"><header><nav aria-label="Main navigation"><a class="brand" href="/" aria-label="Mindora home">mind<b>ora</b></a><div class="links"><a href="/">Home</a><a href="/ai-study-tools.html">AI Tools</a><a href="/pdf-study-assistant.html">PDF Assistant</a><a href="/study-planner.html">Study Planner</a><a href="/study-guides.html">Study Guides</a><a href="/dashboard.html">Dashboard</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div></nav></header><main><article><h1>PDF Study Assistant</h1><p>Mindora's PDF workflow helps you study supported documents by working with selectable text and turning material into revision-friendly notes.</p><div class="panel"><h2>How to get better results</h2><ol><li>Choose a PDF whose text can be selected and copied.</li><li>Check that extracted text is readable and complete.</li><li>Review the generated guide against the original document.</li></ol></div><h2>Known limitation</h2><p>Scanned PDFs containing only page images may not work unless OCR support is added. AI results can contain errors, so verify facts, formulas, and quotations.</p><a class="button" href="/#ai-study">Open Mindora</a></article></main><footer><div class="links"><span>© <span id="year"></span> Mindora</span><a href="/">Home</a><a href="/dashboard.html">Dashboard</a><a href="/ai-study-tools.html">AI study tools</a><a href="/pdf-study-assistant.html">PDF assistant</a><a href="/study-planner.html">Study planner</a><a href="/study-guides.html">Study guides</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div></footer></div><script>document.getElementById('year').textContent=new Date().getFullYear()</script></body></html>
+
+<style id="mindora-global-experience">
+:root{--mindora-glass:rgba(11,17,36,.78);--mindora-border:rgba(159,190,255,.16);--mindora-cyan:#6ce9f5;--mindora-violet:#a99aff}
+html{scroll-padding-top:96px}
+body{isolation:isolate}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 8% 18%,rgba(38,117,190,.11),transparent 36%),radial-gradient(ellipse at 92% 8%,rgba(131,74,203,.12),transparent 34%);opacity:.95}
+nav[aria-label="Main navigation"],body>nav{position:sticky;top:0;z-index:100;isolation:isolate;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);background:linear-gradient(120deg,rgba(8,13,29,.94),rgba(18,21,47,.88));border-bottom:1px solid var(--mindora-border);box-shadow:0 10px 35px rgba(0,0,0,.16);transition:background .25s,border-color .25s}
+nav[aria-label="Main navigation"]:after,body>nav:after{content:"";position:absolute;left:5%;right:5%;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(108,233,245,.42),rgba(169,154,255,.5),transparent);pointer-events:none}
+nav .brand{letter-spacing:-.04em;transition:filter .2s,transform .2s}
+nav .brand:hover{filter:drop-shadow(0 0 12px rgba(108,233,245,.3));transform:translateY(-1px)}
+nav .links{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+nav .links a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:6px 10px;border:1px solid transparent;border-radius:12px;color:#bdc9e4;transition:background .2s,border-color .2s,color .2s,transform .2s}
+nav .links a:hover,nav .links a:focus-visible{background:rgba(108,233,245,.08);border-color:rgba(108,233,245,.18);color:#fff;transform:translateY(-1px);outline:none}
+nav .links a[href="/dashboard.html"]{color:#e5e1ff;background:rgba(169,154,255,.09);border-color:rgba(169,154,255,.17)}
+nav .menu summary{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;border:1px solid rgba(169,154,255,.24);background:linear-gradient(145deg,rgba(108,233,245,.12),rgba(169,154,255,.14));cursor:pointer;transition:transform .2s,box-shadow .2s}
+nav .menu summary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(108,233,245,.12)}
+nav .menu-panel{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(10,15,32,.96);border:1px solid rgba(169,154,255,.2);box-shadow:0 24px 70px rgba(0,0,0,.42)}
+.mindora-mobile-dock{display:none}
+:where(a,button,input,select,textarea,summary):focus-visible{outline:2px solid var(--mindora-cyan);outline-offset:3px}
+@media(max-width:760px){
+  html{scroll-padding-top:76px}
+  nav[aria-label="Main navigation"],body>nav{min-height:66px;padding-top:8px;padding-bottom:8px}
+  nav .links{gap:4px;max-width:68%;justify-content:flex-end}
+  nav .links a{font-size:12px;min-height:32px;padding:4px 7px}
+  nav .links a[href="/about.html"],nav .links a[href="/contact.html"],nav .links a[href="/privacy.html"],nav .links a[href="/study-guides.html"]{display:none}
+  .mindora-mobile-dock{position:fixed;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;left:12px;right:12px;bottom:max(10px,env(safe-area-inset-bottom));z-index:150;padding:7px;border-radius:22px;border:1px solid rgba(161,184,255,.2);background:rgba(8,13,29,.84);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 16px 48px rgba(0,0,0,.4),inset 0 1px rgba(255,255,255,.06)}
+  .mindora-mobile-dock a{display:flex;min-width:0;min-height:47px;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:15px;color:#b9c5df;font:600 10px/1.2 system-ui,sans-serif;letter-spacing:.01em;text-decoration:none;transition:background .2s,color .2s}
+  .mindora-mobile-dock a span{font-size:17px;line-height:1.1}
+  .mindora-mobile-dock a[aria-current="page"],.mindora-mobile-dock a:hover{background:linear-gradient(135deg,rgba(108,233,245,.16),rgba(169,154,255,.18));color:#fff}
+  body{padding-bottom:82px}
+  footer{padding-bottom:24px}
+}
+@media(prefers-reduced-motion:reduce){nav .brand,nav .links a,nav .menu summary,.mindora-mobile-dock a{transition:none!important}}
+</style>
+</head><body><div class="wrap"><header><nav aria-label="Main navigation"><a class="brand" href="/" aria-label="Mindora home">mind<b>ora</b></a><div class="links"><a href="/">Home</a><a href="/ai-study-tools.html">AI Tools</a><a href="/pdf-study-assistant.html">PDF Assistant</a><a href="/study-planner.html">Study Planner</a><a href="/study-guides.html">Study Guides</a><a href="/dashboard.html">Dashboard</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div></nav></header><main><article><h1>PDF Study Assistant</h1><p>Mindora's PDF workflow helps you study supported documents by working with selectable text and turning material into revision-friendly notes.</p><div class="panel"><h2>How to get better results</h2><ol><li>Choose a PDF whose text can be selected and copied.</li><li>Check that extracted text is readable and complete.</li><li>Review the generated guide against the original document.</li></ol></div><h2>Known limitation</h2><p>Scanned PDFs containing only page images may not work unless OCR support is added. AI results can contain errors, so verify facts, formulas, and quotations.</p><a class="button" href="/#ai-study">Open Mindora</a></article></main><footer><div class="links"><span>© <span id="year"></span> Mindora</span><a href="/">Home</a><a href="/dashboard.html">Dashboard</a><a href="/ai-study-tools.html">AI study tools</a><a href="/pdf-study-assistant.html">PDF assistant</a><a href="/study-planner.html">Study planner</a><a href="/study-guides.html">Study guides</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div></footer></div><script>document.getElementById('year').textContent=new Date().getFullYear()</script><nav class="mindora-mobile-dock" aria-label="Quick navigation">
+<a href="/" aria-label="Home"><span aria-hidden="true">⌂</span>Home</a>
+<a href="/ai-study-tools.html" aria-label="AI study tools"><span aria-hidden="true">✧</span>AI Tools</a>
+<a href="/study-planner.html" aria-label="Study planner"><span aria-hidden="true">◷</span>Planner</a>
+<a href="/dashboard.html" aria-label="Dashboard"><span aria-hidden="true">▦</span>Dashboard</a>
+</nav>
+</body></html>
