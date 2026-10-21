@@ -122,7 +122,7 @@
       if (mode === 'signup') {
         if (password.length < 8) throw new Error('Use a password with at least 8 characters.');
         if (password !== confirmInput.value) throw new Error('The passwords do not match.');
-        const data = await api('signup', { method: 'POST', body: JSON.stringify({ email, password, data: { full_name: nameInput.value.trim() } }) });
+        const data = await api('signup?redirect_to=' + encodeURIComponent(cleanRedirect()), { method: 'POST', body: JSON.stringify({ email, password, data: { full_name: nameInput.value.trim() } }) });
         if (data.access_token) { saveSession(data); showNotice('Account created successfully. Welcome to Mindora!', 'success'); }
         else showNotice('Account request received. Check your email to verify the account, then sign in.', 'success');
       } else if (mode === 'signin') {
@@ -134,8 +134,7 @@
       } else if (mode === 'reset') {
         if (password.length < 8) throw new Error('Use a password with at least 8 characters.');
         const data = await api('user', { method: 'PUT', body: JSON.stringify({ password }) }, session?.access_token || recoveryToken || '');
-        if (data.id) showNotice('Password updated. You can now sign in with your new password.', 'success');
-        setMode('signin');
+        if (data.id) { history.replaceState(null, '', cleanRedirect()); recoveryToken = ''; setMode('signin'); showNotice('Password updated. You can now sign in with your new password.', 'success'); }
       }
     } catch (error) {
       showNotice(error.message || 'Something went wrong. Please try again.', 'error');
