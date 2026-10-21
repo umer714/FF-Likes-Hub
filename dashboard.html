@@ -111,8 +111,63 @@ footer{padding:27px 0 34px;color:#8793af}
 @media(max-width:760px){.wrap{width:calc(100% - 32px)}.intro{padding:48px 0 28px}.intro h1{letter-spacing:-2.4px}.grid{gap:13px}.card{padding:20px;border-radius:18px}}
 @media(max-width:480px){.wrap{width:calc(100% - 28px)}.intro{padding-top:37px}.intro h1{font-size:clamp(39px,11vw,53px);letter-spacing:-2px}.grid{grid-template-columns:1fr}.card{padding:19px}.big{font-size:36px}.quickgrid{grid-template-columns:1fr 1fr}}
 </style>
+<style id="mindora-dashboard-atmosphere">
+/* Large-scale dashboard visual refresh: animated study-night atmosphere */
+body{position:relative;isolation:isolate;overflow-x:hidden;background-color:#070a14}
+.mindora-dashboard-atmosphere{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;contain:strict;background:radial-gradient(ellipse at 50% -20%,#162c4b 0%,transparent 58%),#070a14}
+.mindora-dashboard-atmosphere:before,.mindora-dashboard-atmosphere:after,.mindora-dashboard-orb{content:"";position:absolute;display:block;width:min(78vw,820px);height:min(78vw,820px);border-radius:50%;filter:blur(82px);mix-blend-mode:screen;will-change:transform;opacity:.34}
+.mindora-dashboard-atmosphere:before{left:-28%;top:-35%;background:radial-gradient(circle,#24b9d5 0%,#3455a7 34%,transparent 70%);animation:mindoraDashDriftA 20s ease-in-out infinite alternate}
+.mindora-dashboard-atmosphere:after{right:-32%;top:4%;background:radial-gradient(circle,#8054e8 0%,#4e338f 38%,transparent 70%);animation:mindoraDashDriftB 24s ease-in-out infinite alternate}
+.mindora-dashboard-orb{left:18%;bottom:-58%;width:min(92vw,960px);height:min(65vw,680px);background:radial-gradient(ellipse,#176d8c 0%,#393584 37%,transparent 72%);opacity:.22;animation:mindoraDashDriftA 28s ease-in-out infinite alternate-reverse}
+.mindora-dashboard-atmosphere .dash-grid{position:absolute;inset:0;opacity:.2;background-image:linear-gradient(#a8bfff08 1px,transparent 1px),linear-gradient(90deg,#a8bfff08 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000 0%,transparent 85%)}
+.wrap{position:relative;z-index:1}
+@keyframes mindoraDashDriftA{0%{transform:translate3d(-3%,0,0) scale(.9)}100%{transform:translate3d(12%,10%,0) scale(1.12)}}
+@keyframes mindoraDashDriftB{0%{transform:translate3d(3%,-3%,0) scale(1)}100%{transform:translate3d(-12%,12%,0) scale(.9)}}
+.intro{position:relative;padding-top:54px;padding-bottom:34px}
+.intro:before{content:"";position:absolute;left:0;top:30px;width:4px;height:calc(100% - 55px);border-radius:9px;background:linear-gradient(180deg,var(--blue),var(--purple),transparent);opacity:.8}
+.intro h1{max-width:850px;font-size:clamp(40px,6vw,66px);line-height:1.02;letter-spacing:-2.8px}
+.intro h1 span{background:linear-gradient(100deg,#73f0f4 0%,#b3a1ff 72%,#e2d8ff 100%);color:transparent;-webkit-background-clip:text;background-clip:text}
+.intro p{max-width:720px;font-size:14px;line-height:1.9}
+.grid{align-items:stretch}
+.card{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.card.span-3{min-height:150px}
+.card.span-3:after{content:"";position:absolute;right:-36px;top:-52px;width:125px;height:125px;border-radius:50%;background:radial-gradient(circle,#73f0f41c,transparent 70%);pointer-events:none}
+.card.span-3:nth-child(2):after{background:radial-gradient(circle,#b3a1ff22,transparent 70%)}
+.card.span-3:nth-child(3):after{background:radial-gradient(circle,#73f0f416,transparent 70%)}
+.card.span-3:nth-child(4):after{background:radial-gradient(circle,#b3a1ff1c,transparent 70%)}
+.card h2{display:flex;align-items:center;gap:8px}
+.card .split p{margin-top:5px}
+.card.span-7,.card.span-5{min-height:250px}
+.card:hover{transform:translateY(-2px)}
+.chart .bar{transform-origin:bottom;animation:mindoraBarRise .7s cubic-bezier(.2,.75,.25,1) both}
+.chart .barcol:nth-child(2) .bar{animation-delay:.05s}.chart .barcol:nth-child(3) .bar{animation-delay:.1s}.chart .barcol:nth-child(4) .bar{animation-delay:.15s}.chart .barcol:nth-child(5) .bar{animation-delay:.2s}.chart .barcol:nth-child(6) .bar{animation-delay:.25s}.chart .barcol:nth-child(7) .bar{animation-delay:.3s}
+@keyframes mindoraBarRise{from{transform:scaleY(.08);opacity:.25}to{transform:scaleY(1);opacity:1}}
+.quick{min-height:145px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start}
+.quick strong{line-height:1.45}
+.quick small{line-height:1.7}
+.btn,.navbtn,.ghost{min-height:42px}
+.saved-item{gap:16px}
+.saved-item>div{min-width:0}
+.saved-item .btn{flex-shrink:0}
+footer{position:relative;z-index:1}
+@media(max-width:760px){
+ .mindora-dashboard-atmosphere:before,.mindora-dashboard-atmosphere:after{opacity:.3;filter:blur(68px)}
+ .intro{padding-top:42px}.intro:before{top:24px;height:calc(100% - 45px)}
+ .card.span-3{min-height:136px}
+ .card.span-7,.card.span-5{min-height:unset}
+}
+@media(max-width:560px){
+ .intro{padding:36px 0 24px 12px}.intro h1{font-size:clamp(37px,10vw,49px);letter-spacing:-1.8px;line-height:1.06}
+ .intro p{font-size:13px}.grid{padding-bottom:28px}
+ .card{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+ .quick{min-height:140px;padding:13px}.quick .icon{width:39px;height:39px}
+ .saved-item{align-items:flex-start}.saved-item .btn{white-space:nowrap}
+}
+@media(prefers-reduced-motion:reduce){.mindora-dashboard-atmosphere:before,.mindora-dashboard-atmosphere:after,.mindora-dashboard-orb,.chart .bar{animation:none!important}}
+</style>
 </head>
 <body>
+<div class="mindora-dashboard-atmosphere" aria-hidden="true"><span class="mindora-dashboard-orb"></span><span class="dash-grid"></span></div>
 <div class="wrap">
 <nav><a class="brand" href="/" aria-label="Mindora home"><span class="mark">M</span><span>mind<b>ora</b></span></a><details class="menu"><summary aria-label="Open site menu" title="Menu">⋮</summary><div class="menu-panel"><a href="/">Home</a><a href="/#ai-study">AI Study Tools</a><a href="/#study-planner">Study Planner</a><a href="/dashboard.html">Dashboard</a><a href="/ai-study-tools.html">AI study tools guide</a><a href="/pdf-study-assistant.html">PDF study assistant</a><a href="/study-planner.html">Study planner guide</a><a href="/about.html">About Mindora</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy policy</a></div></details></nav>
 <header class="intro"><span class="eyebrow">Your learning command centre</span><h1>Welcome to your <span style="color:var(--blue)">Dashboard.</span></h1><p>See your study progress, keep your learning streak going, and jump back into your work. Your progress and saved notes are stored locally in this browser.</p></header>
