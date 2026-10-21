@@ -374,6 +374,13 @@ nav .menu-panel{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);ba
 @media(max-width:720px){.hero{padding-top:52px}.hero h1{letter-spacing:-.065em}.mindora-command-center{grid-template-columns:1fr;padding:23px 19px;border-radius:23px}.mindora-focus-visual{min-height:225px;grid-row:1}.mindora-command-copy h2{font-size:1.8rem}.mindora-command-foot{font-size:10px}.mindora-orbit-tag.tag-two{right:0}.hero .preview{transform:none}}
 @media(prefers-reduced-motion:reduce){.hero h1 span,.mindora-command-label:before,.mindora-orbit,.mindora-focus-core:before{animation:none!important}.hero .preview{transform:none}}
 </style>
+
+<style id="mindora-visible-auth-entry">
+nav[aria-label="Main navigation"]{display:flex;align-items:center;gap:12px}
+.mindora-auth-cta{margin-left:auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 16px;border-radius:14px;border:1px solid rgba(140,234,245,.42);background:linear-gradient(120deg,rgba(64,130,255,.2),rgba(181,164,255,.18));color:#f5f7ff;text-decoration:none;font-size:13px;font-weight:800;white-space:nowrap;box-shadow:0 8px 26px rgba(72,113,255,.13)}
+.mindora-auth-cta:hover{border-color:#8ceaf5;background:linear-gradient(120deg,rgba(64,130,255,.3),rgba(181,164,255,.28))}
+@media(max-width:420px){.mindora-auth-cta{min-height:39px;padding:0 11px;font-size:12px}}
+</style>
 </head>
 <body>
 <div class="mindora-atmosphere" aria-hidden="true"><div class="mindora-aurora"></div><canvas id="mindoraParticles"></canvas></div>
@@ -381,6 +388,7 @@ nav .menu-panel{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);ba
 <div class="wrap">
 <nav aria-label="Main navigation">
 <a class="brand" href="/" aria-label="Mindora home"><span class="mark">M</span><span>mind<b>ora</b></span></a>
+<a class="mindora-auth-cta" href="/login.html">Sign in <span aria-hidden="true">↗</span></a>
 <details class="menu"><summary aria-label="Open site menu" title="Menu">⋮</summary><div class="menu-panel">
 <a href="/dashboard.html">Dashboard</a><a href="/login.html">Sign in / Create account</a><a href="#features">Study tools</a><a href="#study-planner">Study planner</a><a href="#how">How it works</a><a href="/ai-study-tools.html">AI study tools</a><a href="/study-guides.html">Study guides & tips</a><a href="/pdf-study-assistant.html">PDF study assistant</a><a href="/study-planner.html">Study planner guide</a><a href="/about.html">About Mindora</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy policy</a><button type="button" id="installMindora">Install App</button></div></details>
 </nav>
@@ -459,7 +467,7 @@ nav .menu-panel{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);ba
 </section>
 <section id="get-started"><div class="cta"><h2>Big goals start with one clear idea.</h2><p>Use the study workspace above to turn notes or text-based PDFs into summaries, explanations, practice quizzes, and flashcards. AI features work when the server-side API key is configured and the latest deployment is ready.</p><a class="primary" href="#features">Explore the features ↑</a><small>Learn Smarter. Go Further.</small></div></section>
 </main>
-<footer><div class="footrow"><a class="brand" href="/"><span class="mark">M</span><span>mind<b>ora</b></span></a><span>© <span id="year"></span> Mindora. Learn Smarter. Go Further.</span><div class="footlinks"><a href="/ai-study-tools.html">AI study tools</a><a href="/pdf-study-assistant.html">PDF assistant</a><a href="/study-planner.html">Study planner</a><a href="/study-guides.html">Study guides</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a><a href="/dashboard.html">Dashboard</a></div></div></footer>
+<footer><div class="footrow"><a class="brand" href="/"><span class="mark">M</span><span>mind<b>ora</b></span></a><span>© <span id="year"></span> Mindora. Learn Smarter. Go Further.</span><div class="footlinks"><a href="/ai-study-tools.html">AI study tools</a><a href="/pdf-study-assistant.html">PDF assistant</a><a href="/study-planner.html">Study planner</a><a href="/study-guides.html">Study guides</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a><a href="/dashboard.html">Dashboard</a><a href="/login.html">Sign in / Create account</a></div></div></footer>
 </div>
 <script>
 document.getElementById('year').textContent=new Date().getFullYear();
