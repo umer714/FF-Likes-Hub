@@ -601,31 +601,69 @@ const timerStart=document.getElementById('timerStart');
 const timerPause=document.getElementById('timerPause');
 const timerReset=document.getElementById('timerReset');
 const timerFinish=document.getElementById('timerFinish');
+const TIMER_STATE_KEY='mindora_focus_timer_state_v1';
 let timerElapsedMs=0;
 let timerStartedAt=0;
 let timerInterval=null;
 function currentTimerMs(){return timerElapsedMs+(timerStartedAt?Date.now()-timerStartedAt:0);}
 function formatTimer(ms){const total=Math.floor(ms/1000);const hours=Math.floor(total/3600);const minutes=Math.floor((total%3600)/60);const seconds=total%60;return [hours,minutes,seconds].map(value=>String(value).padStart(2,'0')).join(':');}
+function persistTimerState(forcePaused=false){
+  try{
+    const elapsed=currentTimerMs();
+    localStorage.setItem(TIMER_STATE_KEY,JSON.stringify({elapsedMs:Math.max(0,Math.floor(elapsed)),subject:studySubject.value||'Other',savedAt:new Date().toISOString()}));
+    if(forcePaused&&timerStartedAt){timerElapsedMs=elapsed;timerStartedAt=0;}
+    return true;
+  }catch{return false;}
+}
+function restoreTimerState(){
+  try{
+    const state=JSON.parse(localStorage.getItem(TIMER_STATE_KEY)||'null');
+    if(!state||!Number.isFinite(state.elapsedMs)||state.elapsedMs<0)return;
+    // Restored sessions pause on load, so time away is never counted.
+    timerElapsedMs=Math.min(state.elapsedMs,24*60*60*1000);
+    timerStartedAt=0;
+    if(typeof state.subject==='string'&&state.subject.trim())studySubject.value=state.subject;
+    if(timerElapsedMs>=1000)timerStatus.textContent='Previous session restored — paused';
+  }catch{}
+}
 function renderTimer(){timerClock.textContent=formatTimer(currentTimerMs());}
 function setTimerRunning(running){timerStart.disabled=running;timerPause.disabled=!running;timerReset.disabled=running;timerFinish.disabled=currentTimerMs()<1000;}
-function startTimer(){if(timerStartedAt)return;timerStartedAt=Date.now();timerStatus.textContent='Session in progress';timerInterval=window.setInterval(renderTimer,250);setTimerRunning(true);renderTimer();}
-function pauseTimer(){if(!timerStartedAt)return;timerElapsedMs+=Date.now()-timerStartedAt;timerStartedAt=0;if(timerInterval!==null)window.clearInterval(timerInterval);timerInterval=null;timerStatus.textContent='Paused';renderTimer();setTimerRunning(false);}
-function resetTimer(){if(timerInterval!==null)window.clearInterval(timerInterval);timerInterval=null;timerElapsedMs=0;timerStartedAt=0;timerStatus.textContent='Ready to start';renderTimer();setTimerRunning(false);}
+function startTimer(){
+  if(timerStartedAt)return;
+  timerStartedAt=Date.now();
+  timerStatus.textContent='Session in progress · auto-saved on this device';
+  timerInterval=window.setInterval(()=>{renderTimer();persistTimerState();},250);
+  setTimerRunning(true);renderTimer();persistTimerState();
+}
+function pauseTimer(){
+  if(!timerStartedAt)return;
+  timerElapsedMs+=Date.now()-timerStartedAt;timerStartedAt=0;
+  if(timerInterval!==null)window.clearInterval(timerInterval);timerInterval=null;
+  timerStatus.textContent='Paused · progress saved on this device';
+  renderTimer();setTimerRunning(false);persistTimerState();
+}
+function resetTimer(){
+  if(timerInterval!==null)window.clearInterval(timerInterval);timerInterval=null;
+  timerElapsedMs=0;timerStartedAt=0;timerStatus.textContent='Ready to start';
+  renderTimer();setTimerRunning(false);
+  try{localStorage.removeItem(TIMER_STATE_KEY)}catch{}
+}
 timerStart.addEventListener('click',startTimer);
 timerPause.addEventListener('click',pauseTimer);
 timerReset.addEventListener('click',resetTimer);
 timerFinish.addEventListener('click',()=>{
-  const elapsed=currentTimerMs();
-  const minutes=Math.floor(elapsed/60000);
+  const elapsed=currentTimerMs(),minutes=Math.floor(elapsed/60000);
   if(minutes<1){timerStatus.textContent='Study for at least 1 full minute to save it.';setTimerRunning(Boolean(timerStartedAt));return;}
   if(timerStartedAt){timerElapsedMs=elapsed;timerStartedAt=0;}
-  if(timerInterval!==null)window.clearInterval(timerInterval);
-  timerInterval=null;
+  if(timerInterval!==null)window.clearInterval(timerInterval);timerInterval=null;
   recordStudyMinutes(minutes);
   timerStatus.textContent='Saved '+minutes+' minute'+(minutes===1?'':'s')+' for '+(studySubject.value||'Other')+'.';
   timerElapsedMs=0;timerStartedAt=0;renderTimer();setTimerRunning(false);
+  try{localStorage.removeItem(TIMER_STATE_KEY)}catch{}
 });
-renderTimer();setTimerRunning(false);
+window.addEventListener('pagehide',()=>{if(timerStartedAt){timerElapsedMs=currentTimerMs();timerStartedAt=0;}if(timerInterval!==null)window.clearInterval(timerInterval);timerInterval=null;persistTimerState(true);});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')persistTimerState();});
+restoreTimerState();renderTimer();setTimerRunning(false);
 
 function recordStudyMinutes(minutes){
   const history=readGoalHistory();
