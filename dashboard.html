@@ -165,6 +165,40 @@ footer{position:relative;z-index:1}
 }
 @media(prefers-reduced-motion:reduce){.mindora-dashboard-atmosphere:before,.mindora-dashboard-atmosphere:after,.mindora-dashboard-orb,.chart .bar{animation:none!important}}
 </style>
+
+<style id="mindora-global-experience">
+:root{--mindora-glass:rgba(11,17,36,.78);--mindora-border:rgba(159,190,255,.16);--mindora-cyan:#6ce9f5;--mindora-violet:#a99aff}
+html{scroll-padding-top:96px}
+body{isolation:isolate}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 8% 18%,rgba(38,117,190,.11),transparent 36%),radial-gradient(ellipse at 92% 8%,rgba(131,74,203,.12),transparent 34%);opacity:.95}
+nav[aria-label="Main navigation"],body>nav{position:sticky;top:0;z-index:100;isolation:isolate;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);background:linear-gradient(120deg,rgba(8,13,29,.94),rgba(18,21,47,.88));border-bottom:1px solid var(--mindora-border);box-shadow:0 10px 35px rgba(0,0,0,.16);transition:background .25s,border-color .25s}
+nav[aria-label="Main navigation"]:after,body>nav:after{content:"";position:absolute;left:5%;right:5%;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(108,233,245,.42),rgba(169,154,255,.5),transparent);pointer-events:none}
+nav .brand{letter-spacing:-.04em;transition:filter .2s,transform .2s}
+nav .brand:hover{filter:drop-shadow(0 0 12px rgba(108,233,245,.3));transform:translateY(-1px)}
+nav .links{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+nav .links a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:6px 10px;border:1px solid transparent;border-radius:12px;color:#bdc9e4;transition:background .2s,border-color .2s,color .2s,transform .2s}
+nav .links a:hover,nav .links a:focus-visible{background:rgba(108,233,245,.08);border-color:rgba(108,233,245,.18);color:#fff;transform:translateY(-1px);outline:none}
+nav .links a[href="/dashboard.html"]{color:#e5e1ff;background:rgba(169,154,255,.09);border-color:rgba(169,154,255,.17)}
+nav .menu summary{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;border:1px solid rgba(169,154,255,.24);background:linear-gradient(145deg,rgba(108,233,245,.12),rgba(169,154,255,.14));cursor:pointer;transition:transform .2s,box-shadow .2s}
+nav .menu summary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(108,233,245,.12)}
+nav .menu-panel{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(10,15,32,.96);border:1px solid rgba(169,154,255,.2);box-shadow:0 24px 70px rgba(0,0,0,.42)}
+.mindora-mobile-dock{display:none}
+:where(a,button,input,select,textarea,summary):focus-visible{outline:2px solid var(--mindora-cyan);outline-offset:3px}
+@media(max-width:760px){
+  html{scroll-padding-top:76px}
+  nav[aria-label="Main navigation"],body>nav{min-height:66px;padding-top:8px;padding-bottom:8px}
+  nav .links{gap:4px;max-width:68%;justify-content:flex-end}
+  nav .links a{font-size:12px;min-height:32px;padding:4px 7px}
+  nav .links a[href="/about.html"],nav .links a[href="/contact.html"],nav .links a[href="/privacy.html"],nav .links a[href="/study-guides.html"]{display:none}
+  .mindora-mobile-dock{position:fixed;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;left:12px;right:12px;bottom:max(10px,env(safe-area-inset-bottom));z-index:150;padding:7px;border-radius:22px;border:1px solid rgba(161,184,255,.2);background:rgba(8,13,29,.84);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 16px 48px rgba(0,0,0,.4),inset 0 1px rgba(255,255,255,.06)}
+  .mindora-mobile-dock a{display:flex;min-width:0;min-height:47px;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:15px;color:#b9c5df;font:600 10px/1.2 system-ui,sans-serif;letter-spacing:.01em;text-decoration:none;transition:background .2s,color .2s}
+  .mindora-mobile-dock a span{font-size:17px;line-height:1.1}
+  .mindora-mobile-dock a[aria-current="page"],.mindora-mobile-dock a:hover{background:linear-gradient(135deg,rgba(108,233,245,.16),rgba(169,154,255,.18));color:#fff}
+  body{padding-bottom:82px}
+  footer{padding-bottom:24px}
+}
+@media(prefers-reduced-motion:reduce){nav .brand,nav .links a,nav .menu summary,.mindora-mobile-dock a{transition:none!important}}
+</style>
 </head>
 <body>
 <div class="mindora-dashboard-atmosphere" aria-hidden="true"><span class="mindora-dashboard-orb"></span><span class="dash-grid"></span></div>
@@ -231,5 +265,11 @@ if(!recent.length){const empty=document.createElement('div');empty.className='em
 else for(const item of recent){const row=document.createElement('article');row.className='saved-item';const info=document.createElement('div');const title=document.createElement('strong');title.textContent=item.title;const date=document.createElement('small');const parsed=new Date(item.createdAt);date.textContent=(Number.isNaN(parsed.getTime())?'Saved on this device':parsed.toLocaleDateString())+' · '+(item.kind==='pdf'?'PDF guide':'Study notes');info.append(title,date);const open=document.createElement('a');open.className='btn secondary';open.href='/#ai-study';open.textContent='Open library';row.append(info,open);savedList.append(row)}
 if('serviceWorker' in navigator && location.protocol.startsWith('http'))addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
 </script>
-<script>document.addEventListener('click',e=>{const m=document.querySelector('.menu');if(m&&m.open&&!m.contains(e.target))m.open=false});</script></body>
+<script>document.addEventListener('click',e=>{const m=document.querySelector('.menu');if(m&&m.open&&!m.contains(e.target))m.open=false});</script><nav class="mindora-mobile-dock" aria-label="Quick navigation">
+<a href="/" aria-label="Home"><span aria-hidden="true">⌂</span>Home</a>
+<a href="/ai-study-tools.html" aria-label="AI study tools"><span aria-hidden="true">✧</span>AI Tools</a>
+<a href="/study-planner.html" aria-label="Study planner"><span aria-hidden="true">◷</span>Planner</a>
+<a href="/dashboard.html" aria-label="Dashboard"><span aria-hidden="true">▦</span>Dashboard</a>
+</nav>
+</body>
 </html>
