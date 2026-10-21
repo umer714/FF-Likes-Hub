@@ -22,6 +22,7 @@
   const SESSION_KEY = 'mindora_auth_session_v1';
   let mode = 'signin';
   let session = readSession();
+  let recoveryToken = '';
 
   function configured() {
     return typeof config.supabaseUrl === 'string' && /^https:\/\//.test(config.supabaseUrl) &&
@@ -132,7 +133,7 @@
         showNotice('If an account exists for that email, a recovery link will be sent. Check your inbox.', 'success');
       } else if (mode === 'reset') {
         if (password.length < 8) throw new Error('Use a password with at least 8 characters.');
-        const data = await api('user', { method: 'PUT', body: JSON.stringify({ password }) }, session?.access_token || new URLSearchParams(location.hash.slice(1)).get('access_token') || '');
+        const data = await api('user', { method: 'PUT', body: JSON.stringify({ password }) }, session?.access_token || recoveryToken || '');
         if (data.id) showNotice('Password updated. You can now sign in with your new password.', 'success');
         setMode('signin');
       }
@@ -163,7 +164,7 @@
   });
   const hash = new URLSearchParams(location.hash.slice(1));
   if (hash.get('access_token') && hash.get('type') === 'recovery') {
-    saveSession({ access_token: hash.get('access_token'), refresh_token: hash.get('refresh_token') || '', user: null });
+    recoveryToken = hash.get('access_token');
     setMode('reset');
     showNotice('Recovery link accepted. Enter your new password below.', 'success');
   } else if (new URLSearchParams(location.search).get('mode') === 'signup') setMode('signup');
