@@ -1,8 +1,8 @@
-const CACHE_NAME = "mindora-shell-v20";
+const CACHE_NAME = "mindora-shell-v21";
 const APP_SHELL = [
   "/", "/dashboard.html", "/about.html", "/contact.html", "/privacy.html",
   "/ai-study-tools.html", "/pdf-study-assistant.html", "/study-planner.html", "/study-guides.html",
-  "/manifest.webmanifest", "/login.html", "/auth.html", "/auth.js", "/auth-config.js", "/icons/icon-192.svg", "/icons/icon-512.svg"
+  "/manifest.webmanifest", "/login.html", "/auth.js", "/auth-config.js", "/icons/icon-192.svg", "/icons/icon-512.svg"
 ];
 
 self.addEventListener("install", (event) => {
