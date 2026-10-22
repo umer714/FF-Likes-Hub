@@ -1,4 +1,4 @@
-const CACHE_NAME = "mindora-shell-v21";
+const CACHE_NAME = "mindora-shell-v22";
 const APP_SHELL = [
   "/", "/dashboard.html", "/about.html", "/contact.html", "/privacy.html",
   "/ai-study-tools.html", "/pdf-study-assistant.html", "/study-planner.html", "/study-guides.html",
