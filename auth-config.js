@@ -1,7 +1,6 @@
 // Mindora authentication configuration.
-// Create a project at https://supabase.com, then paste the Project URL and anon/public key below.
-// The anon/public key is intended for browser use. NEVER put a service_role key in this file.
+// The publishable/anon key is intended for browser use. Never place a service_role or secret key here.
 window.MINDORA_AUTH_CONFIG = {
-  supabaseUrl: "YOUR_SUPABASE_PROJECT_URL",
-  supabaseAnonKey: "YOUR_SUPABASE_ANON_KEY"
+  supabaseUrl: "https://xbtwpykvcgcoikknxhxw.supabase.co",
+  supabaseAnonKey: "sb_publishable_hUTvA38G3gPrtCqdaFkK-g_zG9eeusJ"
 };
