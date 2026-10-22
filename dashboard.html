@@ -215,9 +215,24 @@ nav .menu-panel{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);ba
 }
 @media(prefers-reduced-motion:reduce){nav .brand,nav .links a,nav .menu summary,.mindora-mobile-dock a{transition:none!important}}
 </style>
+
+<style id="mindora-dashboard-ambient-style">
+/* Premium, study-focused ambient wallpaper for the dashboard */
+body{position:relative;isolation:isolate;background-attachment:fixed!important}
+#mindora-dashboard-ambient{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 50% -15%,#172c50 0%,transparent 56%),#070a14}
+#mindora-dashboard-ambient:before,#mindora-dashboard-ambient:after{content:"";position:absolute;width:min(76vw,760px);height:min(76vw,760px);border-radius:50%;filter:blur(78px);opacity:.29;mix-blend-mode:screen;will-change:transform}
+#mindora-dashboard-ambient:before{top:-34%;left:-22%;background:radial-gradient(circle,#27b9df 0%,#3658b9 35%,transparent 70%);animation:mindoraDashDriftA 17s ease-in-out infinite alternate}
+#mindora-dashboard-ambient:after{right:-28%;top:12%;background:radial-gradient(circle,#8757ef 0%,#5336a9 38%,transparent 70%);animation:mindoraDashDriftB 21s ease-in-out infinite alternate}
+body>.wrap{position:relative;z-index:1}
+@keyframes mindoraDashDriftA{0%{transform:translate3d(-3%,0,0) scale(.92)}100%{transform:translate3d(11%,12%,0) scale(1.12)}}
+@keyframes mindoraDashDriftB{0%{transform:translate3d(4%,-3%,0) scale(1)}100%{transform:translate3d(-12%,13%,0) scale(.9)}}
+@media(max-width:600px){#mindora-dashboard-ambient:before,#mindora-dashboard-ambient:after{filter:blur(46px);opacity:.23}}
+@media(prefers-reduced-motion:reduce){#mindora-dashboard-ambient:before,#mindora-dashboard-ambient:after{animation:none!important}}
+</style>
 </head>
 <body>
 <div class="mindora-dashboard-atmosphere" aria-hidden="true"><span class="mindora-dashboard-orb"></span><span class="dash-grid"></span></div>
+<div id="mindora-dashboard-ambient" aria-hidden="true"></div>
 <div class="wrap">
 <nav><a class="brand" href="/" aria-label="Mindora home"><span class="mark">M</span><span>mind<b>ora</b></span></a><details class="menu"><summary aria-label="Open site menu" title="Menu">⋮</summary><div class="menu-panel"><a href="/">Home</a><a href="/#ai-study">AI Study Tools</a><a href="/#study-planner">Study Planner</a><a href="/dashboard.html">Dashboard</a><a href="/login.html">Sign in / Create account</a><a href="/ai-study-tools.html">AI study tools guide</a><a href="/pdf-study-assistant.html">PDF study assistant</a><a href="/study-planner.html">Study planner guide</a><a href="/about.html">About Mindora</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy policy</a></div></details></nav>
 <header class="intro"><span class="eyebrow">Your learning command centre</span><h1>Welcome to your <span style="color:var(--blue)">Dashboard.</span></h1><p>See your study progress, keep your learning streak going, and jump back into your work. Your progress and saved notes are stored locally in this browser.</p></header>
