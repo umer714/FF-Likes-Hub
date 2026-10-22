@@ -1,8 +1,8 @@
-const CACHE_NAME = "mindora-shell-v25";
+const CACHE_NAME = "mindora-shell-v26";
 const APP_SHELL = [
   "/", "/dashboard.html", "/about.html", "/contact.html", "/privacy.html",
   "/ai-study-tools.html", "/pdf-study-assistant.html", "/study-planner.html", "/study-guides.html",
-  "/manifest.webmanifest", "/login.html", "/auth.js", "/auth-config.js", "/icons/icon-192.svg", "/icons/icon-512.svg"
+  "/manifest.webmanifest", "/icons/icon-192.svg", "/icons/icon-512.svg"
 ];
 
 self.addEventListener("install", (event) => {
@@ -28,6 +28,11 @@ self.addEventListener("fetch", (event) => {
   const request = event.request;
   const url = new URL(request.url);
   if (request.method !== "GET" || url.origin !== self.location.origin || url.pathname.startsWith("/api/")) return;
+  // Never cache authentication pages or auth configuration/scripts; always fetch them fresh.
+  if (url.pathname === "/login.html" || url.pathname === "/auth.js" || url.pathname === "/auth-config.js") {
+    event.respondWith(fetch(request, { cache: "no-store" }));
+    return;
+  }
   if (request.mode === "navigate") {
     event.respondWith((async () => {
       try {
