@@ -18,7 +18,12 @@
 .menu{position:relative;z-index:100}.menu summary{list-style:none;cursor:pointer;display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line);border-radius:14px;background:#0b1020;color:var(--text);font-size:27px;line-height:1;font-weight:700;flex-shrink:0}.menu summary::-webkit-details-marker{display:none}.menu[open] summary{border-color:#b3a1ff88;color:var(--purple)}.menu-panel{position:absolute;right:0;top:54px;width:min(320px,calc(100vw - 28px));max-height:min(68vh,620px);overflow-y:auto;overscroll-behavior:contain;padding:10px;border:1px solid #55517d;border-radius:17px;background-color:#090e1e!important;background-image:none!important;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 20px 60px #000b;display:grid;gap:3px;isolation:isolate}.menu-panel a{display:block;width:100%;padding:12px;border-radius:10px;color:#e7eaff;font-size:14px;font-weight:650;line-height:1.4}.menu-panel a:hover,.menu-panel a:focus-visible{background:#a99aff20;color:var(--blue);outline:none}.menu-panel a:focus-visible{box-shadow:0 0 0 2px var(--purple)}
 /* Keep the menu panel fully opaque on mobile so page content never shows through. */
 .menu-panel{background-color:#090e1e!important;background-image:none!important;backdrop-filter:none;-webkit-backdrop-filter:none;isolation:isolate}
-.menu-panel a:focus-visible{outline:2px solid var(--blue);outline-offset:1px}</style>
+.menu-panel a:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
+/* Dashboard account access is intentionally visible on desktop and mobile. */
+.mindora-dashboard-account{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 14px;margin-left:auto;border:1px solid rgba(140,234,245,.36);border-radius:13px;background:linear-gradient(120deg,rgba(64,130,255,.17),rgba(181,164,255,.16));color:#f4f6ff;text-decoration:none;font-size:12px;font-weight:800;white-space:nowrap;box-shadow:0 7px 24px rgba(72,113,255,.1)}
+.mindora-dashboard-account:hover{border-color:rgba(140,234,245,.8);background:linear-gradient(120deg,rgba(64,130,255,.27),rgba(181,164,255,.25))}
+@media(max-width:520px){.mindora-dashboard-account{min-height:36px;padding:0 10px;font-size:11px}}
+</style>
 <style id="mindora-dashboard-library-upgrade">
 .library-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
 .library-tools input{flex:1 1 210px;min-width:0;border:1px solid #b9c9ef30;border-radius:11px;padding:11px 13px;background:#080e1c;color:#f5f7ff;font:inherit}
@@ -234,7 +239,7 @@ body>.wrap{position:relative;z-index:1}
 <div class="mindora-dashboard-atmosphere" aria-hidden="true"><span class="mindora-dashboard-orb"></span><span class="dash-grid"></span></div>
 <div id="mindora-dashboard-ambient" aria-hidden="true"></div>
 <div class="wrap">
-<nav><a class="brand" href="/" aria-label="Mindora home"><span class="mark">M</span><span>mind<b>ora</b></span></a><details class="menu"><summary aria-label="Open site menu" title="Menu">⋮</summary><div class="menu-panel"><a href="/">Home</a><a href="/#ai-study">AI Study Tools</a><a href="/#study-planner">Study Planner</a><a href="/dashboard.html">Dashboard</a><a href="/login.html">Sign in / Create account</a><a href="/ai-study-tools.html">AI study tools guide</a><a href="/pdf-study-assistant.html">PDF study assistant</a><a href="/study-planner.html">Study planner guide</a><a href="/about.html">About Mindora</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy policy</a></div></details></nav>
+<nav><a class="brand" href="/" aria-label="Mindora home"><span class="mark">M</span><span>mind<b>ora</b></span></a><a class="mindora-dashboard-account" href="/login.html">Sign in / Create account ↗</a><details class="menu"><summary aria-label="Open site menu" title="Menu">⋮</summary><div class="menu-panel"><a href="/">Home</a><a href="/#ai-study">AI Study Tools</a><a href="/#study-planner">Study Planner</a><a href="/dashboard.html">Dashboard</a><a href="/login.html">Sign in / Create account</a><a href="/ai-study-tools.html">AI study tools guide</a><a href="/pdf-study-assistant.html">PDF study assistant</a><a href="/study-planner.html">Study planner guide</a><a href="/about.html">About Mindora</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy policy</a></div></details></nav>
 <header class="intro"><span class="eyebrow">Your learning command centre</span><h1>Welcome to your <span style="color:var(--blue)">Dashboard.</span></h1><p>See your study progress, keep your learning streak going, and jump back into your work. Your progress and saved notes are stored locally in this browser.</p></header>
 <main class="grid">
 <section class="card span-3"><div class="card-label">TODAY'S STUDY TIME</div><div class="big" id="todayMinutes">0 <span style="font-size:15px">min</span></div><div class="sub" id="todaySub">Start with one focused session.</div></section>
@@ -326,6 +331,7 @@ if('serviceWorker' in navigator && location.protocol.startsWith('http'))addEvent
 <a href="/ai-study-tools.html" aria-label="AI study tools"><span aria-hidden="true">✧</span>AI Tools</a>
 <a href="/study-planner.html" aria-label="Study planner"><span aria-hidden="true">◷</span>Planner</a>
 <a href="/dashboard.html" aria-label="Dashboard"><span aria-hidden="true">▦</span>Dashboard</a>
+<a href="/login.html" aria-label="Account"><span aria-hidden="true">♙</span>Account</a>
 </nav>
 <script id="mindora-mobile-dock-active-state">
 (()=>{const p=location.pathname.replace(/\/$/,"")||"/";document.querySelectorAll(".mindora-mobile-dock a").forEach(a=>{const h=new URL(a.href,location.origin).pathname.replace(/\/$/,"")||"/";if(h===p)a.setAttribute("aria-current","page")})})();
