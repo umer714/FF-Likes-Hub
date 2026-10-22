@@ -164,6 +164,9 @@
   const hash = new URLSearchParams(location.hash.slice(1));
   if (hash.get('access_token') && hash.get('type') === 'recovery') {
     recoveryToken = hash.get('access_token');
+    // Remove the one-time recovery token from the address bar/history immediately.
+    // Keep it in memory only for the password update request.
+    history.replaceState(null, '', location.pathname + location.search);
     setMode('reset');
     showNotice('Recovery link accepted. Enter your new password below.', 'success');
   } else if (new URLSearchParams(location.search).get('mode') === 'signup') setMode('signup');
