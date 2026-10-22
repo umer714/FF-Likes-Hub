@@ -100,7 +100,7 @@
     const response = await fetch(config.supabaseUrl.replace(/\/$/, '') + '/auth/v1/' + path, { ...options, headers });
     let data = {};
     try { data = await response.json(); } catch {}
-    if (!response.ok) throw new Error(data.msg || data.message || data.error_description || data.error || 'Request failed. Please try again.');
+    if (!response.ok) { const error = new Error(data.msg || data.message || data.error_description || data.error || 'Request failed. Please try again.'); error.status = response.status; throw error; }
     return data;
   }
   function cleanRedirect() {
@@ -142,6 +142,21 @@
       setBusy(false, mode === 'signin' ? 'Sign in securely' : mode === 'signup' ? 'Create account' : mode === 'forgot' ? 'Send recovery link' : 'Update password');
     }
   }
+  async function validateStoredSession() {
+    if (!session || !configured()) return;
+    try {
+      const user = await api('user', {}, session.access_token);
+      if (!user || !user.id) { saveSession(null); return; }
+      if (!session.user || session.user.id !== user.id || session.user.email !== user.email) {
+        saveSession({ ...session, user: { ...(session.user || {}), id: user.id, email: user.email } });
+      }
+    } catch (error) {
+      // Only discard a session when Supabase explicitly rejects the token.
+      // Temporary network/server failures should not sign the user out unexpectedly.
+      if (error && (error.status === 401 || error.status === 403)) saveSession(null);
+    }
+  }
+
   switchButton.addEventListener('click', () => {
     if (mode === 'signin') setMode('signup');
     else if (mode === 'signup') setMode('signin');
@@ -172,5 +187,6 @@
   } else if (new URLSearchParams(location.search).get('mode') === 'signup') setMode('signup');
   else setMode('signin');
   renderAccount();
+  validateStoredSession();
   if (!configured()) showNotice('Preview mode: the premium login screen is ready, but real account creation needs Supabase keys in auth-config.js.', 'warning');
 })();
