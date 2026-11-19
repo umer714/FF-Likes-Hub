@@ -8,4 +8,6 @@
   <url><loc>https://mindorapk.vercel.app/pdf-study-assistant.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://mindorapk.vercel.app/study-planner.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://mindorapk.vercel.app/study-guides.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mindorapk.vercel.app/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://mindorapk.vercel.app/disclaimer.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
